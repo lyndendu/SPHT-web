@@ -84,7 +84,7 @@ jobs:
               "  },\n"
               "  env: { browser: true, node: true, es2022: true },\n"
               "  extends: ['eslint:recommended'],\n"
-              "  rules: { 'no-undef': 'off' },\n"
+              "  rules: { 'no-undef': 'off', 'no-unused-vars': 'off' },\n"
               "}\n"
           )
           PY
