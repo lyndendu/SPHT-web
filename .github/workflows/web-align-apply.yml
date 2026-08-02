@@ -47,58 +47,66 @@ jobs:
           corepack enable
           corepack prepare pnpm@11.7.0 --activate
 
-      - name: Apply deterministic migration
-        run: node scripts/align-web-stack.mjs
-
-      - name: Resolve upgraded workspace
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Generate Prisma Client
-        run: pnpm prisma:generate
-
-      - name: Apply safe Biome fixes
-        run: pnpm check:fix
-
-      - name: Type check
-        run: pnpm typecheck
-
-      - name: Biome check
-        run: pnpm check
-
-      - name: Supplementary ESLint
-        run: pnpm lint
-
-      - name: Production build
-        run: pnpm build
-
-      - name: Safety assertions
+      - name: Apply, verify, and commit migration
+        shell: bash
         run: |
-          grep -F 'provider = "postgresql"' apps/web/prisma/schema.prisma
-          grep -F 'next-auth' apps/web/package.json
-          grep -F 'stripe' apps/web/package.json
-          test -d apps/web/app/api
-          test -d packages/ui/src/magicui
-          test ! -f apps/web/tailwind.config.ts
-          grep -F '@source "../../../packages/ui/src' apps/web/app/globals.css
-          grep -F 'reactCompiler: true' apps/web/next.config.js
-          ! grep -R '@spht/tsconfig' apps packages --include='package.json' --include='tsconfig.json'
+          set +e
+          rm -f .web-align-failure.log
+          {
+            echo '== Apply deterministic migration =='
+            node scripts/align-web-stack.mjs
+            echo '== Resolve upgraded workspace =='
+            pnpm install --no-frozen-lockfile
+            echo '== Generate Prisma Client =='
+            pnpm prisma:generate
+            echo '== Apply safe Biome fixes =='
+            pnpm check:fix
+            echo '== Type check =='
+            pnpm typecheck
+            echo '== Biome check =='
+            pnpm check
+            echo '== Supplementary ESLint =='
+            pnpm lint
+            echo '== Production build =='
+            pnpm build
+            echo '== Safety assertions =='
+            grep -F 'provider = "postgresql"' apps/web/prisma/schema.prisma
+            grep -F 'next-auth' apps/web/package.json
+            grep -F 'stripe' apps/web/package.json
+            test -d apps/web/app/api
+            test -d packages/ui/src/magicui
+            test ! -f apps/web/tailwind.config.ts
+            grep -F '@source "../../../packages/ui/src' apps/web/app/globals.css
+            grep -F 'reactCompiler: true' apps/web/next.config.js
+            ! grep -R '@spht/tsconfig' apps packages --include='package.json' --include='tsconfig.json'
+          } > /tmp/web-align.log 2>&1
+          status=$?
 
-      - name: Remove one-time migration files
-        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ "$status" -ne 0 ]; then
+            git reset --hard HEAD
+            cp /tmp/web-align.log .web-align-failure.log
+            git add .web-align-failure.log
+            git commit -m "ci: record Web alignment migration failure"
+            git push origin HEAD:feat/align-web-admin-stack
+            cat /tmp/web-align.log
+            exit "$status"
+          fi
+
           rm -f scripts/align-web-stack.mjs
           rm -f .github/workflows/web-align-apply.yml
           rm -f .github/workflows/web-align-baseline.yml
           rm -f .baseline-trigger
+          rm -f .web-align-failure.log
           rm -f docs/superpowers/plans/.branch-marker
           rm -f docs/superpowers/plans/.do-not-use
           rm -f docs/superpowers/plans/.last-marker
           rm -f docs/superpowers/plans/.oops
           rmdir scripts 2>/dev/null || true
 
-      - name: Commit verified migration
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "refactor: align Web engineering stack with Admin"
           git push origin HEAD:feat/align-web-admin-stack
+          cat /tmp/web-align.log
