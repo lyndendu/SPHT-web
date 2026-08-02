@@ -64,35 +64,33 @@ Upgrade Zod from version 3 to version 4 across the Web workspace, including `@sp
 
 The migration must:
 
-- keep exported contract names and import paths stable where possible;
-- update only APIs that are incompatible with Zod 4;
+- keep existing exported contract names and import paths stable;
+- update APIs that are incompatible with Zod 4 without changing the intended validation behavior;
 - verify all authentication, username, user, form, API, and server-side validation paths;
-- avoid changing business validation rules unless required to preserve existing behavior.
+- avoid changing business validation rules.
 
 #### Biome and code quality
 
 Adopt Biome 2 as the primary formatter and baseline linter, matching Admin.
 
-The target structure is:
+The required structure is:
 
 - `packages/biome-config` for shared Biome defaults;
 - root scripts for `format`, `check`, and `check:fix`;
 - package-level `check` scripts where needed;
 - Husky and lint-staged for changed JavaScript and TypeScript files.
 
-ESLint may remain temporarily only for Next.js, accessibility, or project-specific checks that Biome cannot reproduce. If retained, it becomes a supplementary check rather than the primary formatter. No existing useful validation rule may be silently removed.
+ESLint remains as a supplementary check for Next.js, accessibility, React, and project-specific rules that Biome does not replace. Biome owns formatting, import organization, and baseline linting. ESLint must not format files or duplicate rules already enforced by Biome. No existing useful validation rule may be silently removed.
 
 #### Shared TypeScript configuration
 
-Align the shared TypeScript configuration package with Admin's naming and structure.
-
-Preferred target:
+Replace the current shared TypeScript configuration package with the Admin-aligned naming and structure:
 
 - `packages/typescript-config/base.json`
 - `packages/typescript-config/nextjs.json`
 - package name `@spht/typescript-config`
 
-Existing TypeScript strictness must not be reduced. All application and shared packages must continue to pass `tsc --noEmit`.
+All current consumers of `@spht/tsconfig` must be updated to `@spht/typescript-config`. Existing TypeScript strictness must not be reduced. All application and shared packages must continue to pass `tsc --noEmit`.
 
 #### React Compiler
 
@@ -102,7 +100,7 @@ Compiler-related dependency and configuration changes must not alter server/clie
 
 #### Workspace commands
 
-The root workspace should expose a consistent command surface:
+The root workspace must expose a consistent command surface:
 
 ```bash
 pnpm dev
@@ -115,7 +113,7 @@ pnpm typecheck
 pnpm prisma:generate
 ```
 
-`check` is the canonical formatting and baseline lint command. `lint` may invoke supplementary rules when retained.
+`check` is the canonical Biome formatting and baseline lint command. `lint` runs the supplementary ESLint rules.
 
 #### CI
 
@@ -132,15 +130,13 @@ pnpm lint
 pnpm build
 ```
 
-If ESLint is fully removed, `pnpm lint` may become an alias to the relevant Biome lint command, but the command must remain available.
-
 ### UI package boundary
 
 This phase does not merge Web and Admin UI packages.
 
 Web keeps its website-oriented components, Magic UI elements, and Framer Motion dependencies. Admin keeps its richer internal-operation component set. The upgrade aligns engineering foundations, not visual component inventories.
 
-Shared package names are not changed in this phase unless a rename is necessary for the TypeScript or Biome configuration packages. A future cross-repository design-system consolidation will be handled separately.
+The Web packages `@spht/ui`, `@spht/contracts`, and `@spht/utils` keep their existing names. A future cross-repository design-system consolidation will be handled separately.
 
 ### Data and behavior safety
 
@@ -156,7 +152,7 @@ Phase 1 is complete only when:
 - Prisma Client generation succeeds;
 - all workspace TypeScript checks pass;
 - Biome checks pass;
-- supplementary lint checks pass with zero warnings;
+- supplementary ESLint checks pass with zero warnings;
 - the Next.js production build succeeds;
 - Tailwind styles compile from both `apps/web` and `packages/ui`;
 - existing authentication, Prisma, Stripe, API, and public-page code still compiles;
@@ -198,7 +194,7 @@ All commands must pass on Node.js 24 and pnpm 11.7.0 before merging into `SPHT-a
 
 Each phase uses its own feature branch and pull request. The Web branch is implemented and merged first. The Admin branch is created from the latest Admin `main` only after the Web merge.
 
-Upgrades should be made in small, reviewable commits grouped by concern:
+Upgrades must be made in small, reviewable commits grouped by concern:
 
 1. shared configuration and scripts;
 2. Tailwind 4 migration;
