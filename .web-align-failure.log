@@ -1,0 +1,527 @@
+== Apply deterministic migration ==
+Web stack alignment files prepared.
+== Resolve upgraded workspace ==
+Scope: all 8 workspace projects
+? Verifying lockfile against supply-chain policies (579 entries)...
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 41, reused 0, downloaded 37, added 0
+Progress: resolved 47, reused 0, downloaded 45, added 0
+Progress: resolved 50, reused 0, downloaded 49, added 0
+Progress: resolved 52, reused 0, downloaded 50, added 0
+✓ Lockfile passes supply-chain policies (579 entries in 5.5s)
+Progress: resolved 53, reused 0, downloaded 51, added 0
+Progress: resolved 205, reused 0, downloaded 146, added 0
+Progress: resolved 221, reused 0, downloaded 197, added 0
+Progress: resolved 316, reused 0, downloaded 232, added 0
+Progress: resolved 404, reused 0, downloaded 322, added 0
+Progress: resolved 479, reused 0, downloaded 363, added 0
+Progress: resolved 590, reused 0, downloaded 526, added 0
+Packages: +529
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 592, reused 0, downloaded 530, added 529, done
+.../node_modules/@prisma/engines postinstall$ node scripts/postinstall.js
+.../sharp@0.34.5/node_modules/sharp install$ node install/check.js || npm run build
+.../sharp@0.34.5/node_modules/sharp install: Done
+.../node_modules/@prisma/engines postinstall: Done
+.../prisma@5.10.2/node_modules/prisma preinstall$ node scripts/preinstall-entry.js
+.../prisma@5.10.2/node_modules/prisma preinstall: Done
+.../node_modules/@vercel/speed-insights postinstall$ node scripts/postinstall.mjs
+.../node_modules/@prisma/client postinstall$ node scripts/postinstall.js
+.../node_modules/@vercel/speed-insights postinstall: Done
+.../node_modules/@prisma/client postinstall: Prisma schema loaded from apps/web/prisma/schema.prisma
+.../node_modules/@prisma/client postinstall: ✔ Generated Prisma Client (v5.10.2) to ./node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 51ms
+.../node_modules/@prisma/client postinstall: Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
+.../node_modules/@prisma/client postinstall: ```
+.../node_modules/@prisma/client postinstall: import { PrismaClient } from '@prisma/client'
+.../node_modules/@prisma/client postinstall: const prisma = new PrismaClient()
+.../node_modules/@prisma/client postinstall: ```
+.../node_modules/@prisma/client postinstall: or start using Prisma Client at the edge (See: https://pris.ly/d/accelerate)
+.../node_modules/@prisma/client postinstall: ```
+.../node_modules/@prisma/client postinstall: import { PrismaClient } from '@prisma/client/edge'
+.../node_modules/@prisma/client postinstall: const prisma = new PrismaClient()
+.../node_modules/@prisma/client postinstall: ```
+.../node_modules/@prisma/client postinstall: See other ways of importing Prisma Client: http://pris.ly/d/importing-client
+.../node_modules/@prisma/client postinstall: ┌─────────────────────────────────────────────────────────────┐
+.../node_modules/@prisma/client postinstall: │  Deploying your app to serverless or edge functions?        │
+.../node_modules/@prisma/client postinstall: │  Try Prisma Accelerate for connection pooling and caching.  │
+.../node_modules/@prisma/client postinstall: │  https://pris.ly/cli/accelerate                             │
+.../node_modules/@prisma/client postinstall: └─────────────────────────────────────────────────────────────┘
+.../node_modules/@prisma/client postinstall: Done
+. prepare$ husky
+. prepare: HUSKY=0 skip install
+. prepare: Done
+apps/web postinstall$ prisma generate
+apps/web postinstall: Prisma schema loaded from prisma/schema.prisma
+apps/web postinstall: ✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 48ms
+apps/web postinstall: Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
+apps/web postinstall: ```
+apps/web postinstall: import { PrismaClient } from '@prisma/client'
+apps/web postinstall: const prisma = new PrismaClient()
+apps/web postinstall: ```
+apps/web postinstall: or start using Prisma Client at the edge (See: https://pris.ly/d/accelerate)
+apps/web postinstall: ```
+apps/web postinstall: import { PrismaClient } from '@prisma/client/edge'
+apps/web postinstall: const prisma = new PrismaClient()
+apps/web postinstall: ```
+apps/web postinstall: See other ways of importing Prisma Client: http://pris.ly/d/importing-client
+apps/web postinstall: ┌─────────────────────────────────────────────────────────────┐
+apps/web postinstall: │  Deploying your app to serverless or edge functions?        │
+apps/web postinstall: │  Try Prisma Accelerate for connection pooling and caching.  │
+apps/web postinstall: │  https://pris.ly/cli/accelerate                             │
+apps/web postinstall: └─────────────────────────────────────────────────────────────┘
+apps/web postinstall: Done
+
+devDependencies:
++ @biomejs/biome 2.5.6
++ husky 9.1.7
++ lint-staged 16.4.0 (17.3.0 is available)
++ turbo 2.10.8
++ typescript 5.9.3 (7.0.2 is available)
+
+Done in 15.8s using pnpm v11.7.0
+== Generate Prisma Client ==
+$ pnpm --filter @spht/web prisma:generate
+$ prisma generate
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 54ms
+
+Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
+```
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+```
+or start using Prisma Client at the edge (See: https://pris.ly/d/accelerate)
+```
+import { PrismaClient } from '@prisma/client/edge'
+const prisma = new PrismaClient()
+```
+
+See other ways of importing Prisma Client: http://pris.ly/d/importing-client
+
+┌─────────────────────────────────────────────────────────────┐
+│  Deploying your app to serverless or edge functions?        │
+│  Try Prisma Accelerate for connection pooling and caching.  │
+│  https://pris.ly/cli/accelerate                             │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  Update available 5.10.2 -> 7.9.1                       │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+== Apply safe Biome fixes ==
+$ biome check --write .
+apps/web/app/(auth)/login/page.tsx:23:5 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━━━━━━
+
+  i This fragment is unnecessary.
+  
+    22 │   return (
+  > 23 │     <>
+       │     ^^
+  > 24 │       <div className="container flex h-screen w-screen flex-col items-center justify-center">
+        ...
+  > 49 │       </div>
+  > 50 │     </>
+       │     ^^^
+    51 │   );
+    52 │ }
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    21 21 │   
+    22 22 │     return (
+    23    │ - ····<>
+    24    │ - ······<div·className="container·flex·h-screen·w-screen·flex-col·items-center·justify-center">
+       23 │ + ····<div·className="container·flex·h-screen·w-screen·flex-col·items-center·justify-center">
+    25 24 │           <Link
+    26 25 │             href="/#"
+    ····· │ 
+    47 46 │             </p>
+    48 47 │           </div>
+    49    │ - ······</div>
+    50    │ - ····</>
+       48 │ + ······</div>
+    51 49 │     );
+    52 50 │   }
+  
+
+apps/web/app/(auth)/login/page.tsx:29:11 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━━━━━
+
+  i This fragment is unnecessary.
+  
+    27 │           className={cn(buttonVariants({ variant: "ghost" }), "absolute left-4 top-4 md:left-8 md:top-8")}
+    28 │         >
+  > 29 │           <>
+       │           ^^
+  > 30 │             <Icons.chevronLeft className="mr-2 h-4 w-4" />
+  > 31 │             Back
+  > 32 │           </>
+       │           ^^^
+    33 │         </Link>
+    34 │         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    27 27 │             className={cn(buttonVariants({ variant: "ghost" }), "absolute left-4 top-4 md:left-8 md:top-8")}
+    28 28 │           >
+    29    │ - ··········<>
+       29 │ + ··········
+    30 30 │               <Icons.chevronLeft className="mr-2 h-4 w-4" />
+    31 31 │               Back
+    32    │ - ··········</>
+       32 │ + ··········
+    33 33 │           </Link>
+    34 34 │           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+  
+
+apps/web/app/(auth)/layout.tsx:1:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+  > 1 │ import { ThemeProvider } from "@/components/theme-provider";
+      │        ^^^^^^^^^^^^^^^^^
+    2 │ 
+    3 │ interface AuthLayoutProps {
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    1 │ import·{·ThemeProvider·}·from·"@/components/theme-provider";
+      │ ------------------------------------------------------------
+
+apps/web/app/(dashboard)/dashboard/page.tsx:92:16 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    91 │ import { Button } from "@spht/ui/button";
+  > 92 │ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@spht/ui/card";
+       │                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    93 │ import { Input } from "@spht/ui/input";
+    94 │ import { Label } from "@spht/ui/label";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    92 │ import·{·Card,·CardContent,·CardDescription,·CardFooter,·CardHeader,·CardTitle·}·from·"@spht/ui/card";
+       │                -------------                 ------------                                             
+
+apps/web/app/(dashboard)/dashboard/page.tsx:97:10 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    95 │ import { cn } from "@spht/utils";
+    96 │ import axios from "axios";
+  > 97 │ import { useEffect, useState } from "react";
+       │          ^^^^^^^^^
+    98 │ 
+    99 │ function DashboardPage() {
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    97 │ import·{·useEffect,·useState·}·from·"react";
+       │          -----------                        
+
+apps/web/app/(dashboard)/dashboard/page.tsx:100:10 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━
+
+  ! This variable hasPaid is unused.
+  
+     99 │ function DashboardPage() {
+  > 100 │   const [hasPaid, setHasPaid] = useState(false);
+        │          ^^^^^^^
+    101 │   const [tag, setTag] = useState("");
+    102 │   const [quotes, setQuotes] = useState([]);
+  
+  i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+  
+  i Unsafe fix: If this is intentional, prepend hasPaid with an underscore.
+  
+     98  98 │   
+     99  99 │   function DashboardPage() {
+    100     │ - ··const·[hasPaid,·setHasPaid]·=·useState(false);
+        100 │ + ··const·[_hasPaid,·setHasPaid]·=·useState(false);
+    101 101 │     const [tag, setTag] = useState("");
+    102 102 │     const [quotes, setQuotes] = useState([]);
+  
+
+apps/web/app/(dashboard)/dashboard/page.tsx:100:19 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━
+
+  ! This variable setHasPaid is unused.
+  
+     99 │ function DashboardPage() {
+  > 100 │   const [hasPaid, setHasPaid] = useState(false);
+        │                   ^^^^^^^^^^
+    101 │   const [tag, setTag] = useState("");
+    102 │   const [quotes, setQuotes] = useState([]);
+  
+  i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+  
+  i Unsafe fix: If this is intentional, prepend setHasPaid with an underscore.
+  
+     98  98 │   
+     99  99 │   function DashboardPage() {
+    100     │ - ··const·[hasPaid,·setHasPaid]·=·useState(false);
+        100 │ + ··const·[hasPaid,·_setHasPaid]·=·useState(false);
+    101 101 │     const [tag, setTag] = useState("");
+    102 102 │     const [quotes, setQuotes] = useState([]);
+  
+
+apps/web/app/(dashboard)/dashboard/page.tsx:106:9 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━
+
+  ! This variable handleCheckout is unused.
+  
+    105 │   // useEffect(() => {
+  > 106 │   const handleCheckout = async () => {
+        │         ^^^^^^^^^^^^^^
+    107 │     // Call your API endpoint to create a checkout session
+    108 │     const res = await fetch("/api/checkout", {
+  
+  i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+  
+  i Unsafe fix: If this is intentional, prepend handleCheckout with an underscore.
+  
+    104 104 │   
+    105 105 │     // useEffect(() => {
+    106     │ - ··const·handleCheckout·=·async·()·=>·{
+        106 │ + ··const·_handleCheckout·=·async·()·=>·{
+    107 107 │       // Call your API endpoint to create a checkout session
+    108 108 │       const res = await fetch("/api/checkout", {
+  
+
+apps/web/app/(marketing)/hero/page.tsx:2:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    1 │ import { buttonVariants } from "@spht/ui/button";
+  > 2 │ import BlurIn from "@spht/ui/magicui/blur-in";
+      │        ^^^^^^
+    3 │ import { BorderBeam } from "@spht/ui/magicui/border-beam";
+    4 │ import ShineBorder from "@spht/ui/magicui/shine-border";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     1  1 │   import { buttonVariants } from "@spht/ui/button";
+     2    │ - import·BlurIn·from·"@spht/ui/magicui/blur-in";
+     3  2 │   import { BorderBeam } from "@spht/ui/magicui/border-beam";
+     4  3 │   import ShineBorder from "@spht/ui/magicui/shine-border";
+  
+
+apps/web/app/(marketing)/page.tsx:1:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+  > 1 │ import { Button } from "@spht/ui/button";
+      │        ^^^^^^^^^^
+    2 │ import { MainNav } from "@/components/main-nav";
+    3 │ import { ModeToggle } from "@/components/toggle";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    1 │ import·{·Button·}·from·"@spht/ui/button";
+      │ -----------------------------------------
+
+apps/web/app/(marketing)/page.tsx:2:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    1 │ import { Button } from "@spht/ui/button";
+  > 2 │ import { MainNav } from "@/components/main-nav";
+      │        ^^^^^^^^^^^
+    3 │ import { ModeToggle } from "@/components/toggle";
+    4 │ import HeroPage from "./hero/page";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    1 1 │   import { Button } from "@spht/ui/button";
+    2   │ - import·{·MainNav·}·from·"@/components/main-nav";
+    3 2 │   import { ModeToggle } from "@/components/toggle";
+    4 3 │   import HeroPage from "./hero/page";
+  
+
+apps/web/app/(marketing)/page.tsx:3:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    1 │ import { Button } from "@spht/ui/button";
+    2 │ import { MainNav } from "@/components/main-nav";
+  > 3 │ import { ModeToggle } from "@/components/toggle";
+      │        ^^^^^^^^^^^^^^
+    4 │ import HeroPage from "./hero/page";
+    5 │ 
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    1 1 │   import { Button } from "@spht/ui/button";
+    2 2 │   import { MainNav } from "@/components/main-nav";
+    3   │ - import·{·ModeToggle·}·from·"@/components/toggle";
+    4 3 │   import HeroPage from "./hero/page";
+    5 4 │   
+  
+
+apps/web/app/(dashboard)/dashboard/page.tsx:167:22 lint/suspicious/noArrayIndexKey ━━━━━━━━━━━━━━━━━
+
+  × Avoid using the index of an array as key property in an element.
+  
+    165 │       <div className="md:grid md:grid-cols-2 md:gap-3 lg:grid lg:grid-cols-3 lg:gap-4 relative justify-center mx-auto">
+    166 │         {quotes.map((quote, index) => (
+  > 167 │           <Card key={index} className="w-[350px]">
+        │                      ^^^^^
+    168 │             <CardHeader>
+    169 │               <CardTitle>{quote}</CardTitle>
+  
+  i This is the source of the key value.
+  
+    165 │       <div className="md:grid md:grid-cols-2 md:gap-3 lg:grid lg:grid-cols-3 lg:gap-4 relative justify-center mx-auto">
+  > 166 │         {quotes.map((quote, index) => (
+        │                             ^^^^^
+    167 │           <Card key={index} className="w-[350px]">
+    168 │             <CardHeader>
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+apps/web/app/globals.css:4:2 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Tailwind-specific syntax is disabled.
+  
+    2 │ @import "tw-animate-css";
+    3 │ 
+  > 4 │ @source "../**/*.{js,ts,jsx,tsx,mdx}";
+      │  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    5 │ @source "../../../packages/ui/src/**/*.{js,ts,jsx,tsx,mdx}";
+    6 │ 
+  
+  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  
+
+apps/web/app/globals.css:5:2 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Tailwind-specific syntax is disabled.
+  
+    4 │ @source "../**/*.{js,ts,jsx,tsx,mdx}";
+  > 5 │ @source "../../../packages/ui/src/**/*.{js,ts,jsx,tsx,mdx}";
+      │  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    6 │ 
+    7 │ @custom-variant dark (&:is(.dark *));
+  
+  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  
+
+apps/web/app/globals.css:7:2 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Tailwind-specific syntax is disabled.
+  
+    5 │ @source "../../../packages/ui/src/**/*.{js,ts,jsx,tsx,mdx}";
+    6 │ 
+  > 7 │ @custom-variant dark (&:is(.dark *));
+      │  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    8 │ 
+    9 │ @theme inline {
+  
+  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  
+
+apps/web/app/globals.css:9:2 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Tailwind-specific syntax is disabled.
+  
+     7 │ @custom-variant dark (&:is(.dark *));
+     8 │ 
+   > 9 │ @theme inline {
+       │  ^^^^^^^^^^^^^^
+  > 10 │   --color-background: hsl(var(--background));
+        ...
+  > 36 │   --animate-shine-pulse: shine-pulse 2s ease-in-out infinite;
+  > 37 │ }
+       │ ^
+    38 │ 
+    39 │ @utility container {
+  
+  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  
+
+apps/web/app/globals.css:39:2 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Tailwind-specific syntax is disabled.
+  
+    37 │ }
+    38 │ 
+  > 39 │ @utility container {
+       │  ^^^^^^^^^^^^^^^^^^^
+  > 40 │   width: 100%;
+        ...
+  > 47 │   @media (width >= 96rem) { max-width: 1400px; }
+  > 48 │ }
+       │ ^
+    49 │ 
+    50 │ @keyframes shine-pulse {
+  
+  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  
+
+apps/web/app/globals.css:192:6 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Tailwind-specific syntax is disabled.
+  
+    190 │ @layer base {
+    191 │   * {
+  > 192 │     @apply border-border;
+        │      ^^^^^^^^^^^^^^^^^^^^
+    193 │   }
+    194 │   body {
+  
+  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  
+
+apps/web/app/globals.css:195:6 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Tailwind-specific syntax is disabled.
+  
+    193 │   }
+    194 │   body {
+  > 195 │     @apply bg-background text-foreground;
+        │      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    196 │   }
+    197 │ }
+  
+  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  
+
+Skipped 69 suggested fixes.
+If you wish to apply the suggested (unsafe) fixes, use the command biome check --write --unsafe
+
+The number of diagnostics exceeds the limit allowed. Use --max-diagnostics to increase it.
+Diagnostics not shown: 39.
+Checked 90 files in 75ms. Fixed 66 files.
+Found 26 errors.
+Found 31 warnings.
+Found 2 infos.
+check ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while applying fixes.
+  
+
+[ELIFECYCLE] Command failed with exit code 1.
