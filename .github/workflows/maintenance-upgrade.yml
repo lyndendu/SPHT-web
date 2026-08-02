@@ -1,0 +1,79 @@
+name: Apply Maintenance Upgrades
+
+on:
+  push:
+    branches:
+      - automation/maintenance-warnings
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/spht
+      NEXTAUTH_SECRET: ci-secret
+      NEXTAUTH_URL: http://localhost:3000
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+      GOOGLE_CLIENT_ID: ci-google-client
+      GOOGLE_CLIENT_SECRET: ci-google-secret
+      GITHUB_ID: ci-github-client
+      GITHUB_SECRET: ci-github-secret
+      GITHUB_ACCESS_TOKEN: ci-github-token
+      STRIPE_API_KEY: sk_test_ci
+      STRIPE_SECRET_KEY: sk_test_ci
+      STRIPE_WEBHOOK_SECRET: whsec_ci
+    steps:
+      - name: Check out maintenance branch
+        uses: actions/checkout@v6
+        with:
+          ref: automation/maintenance-warnings
+          fetch-depth: 0
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 9.15.4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Apply source and configuration fixes
+        run: python scripts/resolve-maintenance-warnings.py
+
+      - name: Upgrade framework and lint dependencies
+        run: |
+          pnpm --filter @spht/web remove next-headers
+          pnpm --filter @spht/web add next@latest react@latest react-dom@latest recharts@latest
+          pnpm --filter @spht/web add -D eslint@latest eslint-config-next@latest typescript@latest @types/node@latest @types/react@latest @types/react-dom@latest
+          pnpm --filter @spht/eslint-config remove @typescript-eslint/parser
+          pnpm --filter @spht/eslint-config add @eslint/js@latest eslint-config-next@latest typescript-eslint@latest
+          pnpm --filter @spht/ui add -D eslint@latest typescript@latest @types/node@latest @types/react@latest @types/react-dom@latest react@latest react-dom@latest
+          pnpm --filter @spht/contracts add -D eslint@latest typescript@latest @types/node@latest
+          pnpm --filter @spht/utils add -D eslint@latest typescript@latest @types/node@latest
+          pnpm update -r caniuse-lite@latest browserslist@latest
+          pnpm dedupe
+
+      - name: Type check
+        run: pnpm typecheck
+
+      - name: Lint without warnings
+        run: pnpm lint -- --max-warnings=0
+
+      - name: Production build
+        run: pnpm build
+
+      - name: Commit verified maintenance fixes
+        run: |
+          rm scripts/resolve-maintenance-warnings.py
+          rmdir scripts 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: resolve maintenance warnings"
+          git push origin HEAD:automation/maintenance-warnings
