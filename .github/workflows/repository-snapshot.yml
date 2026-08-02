@@ -48,7 +48,25 @@ jobs:
           cache: pnpm
 
       - name: Apply directory migration
-        run: python scripts/migrate-to-monorepo.py
+        run: |
+          mkdir -p docs/legacy
+          cp package.json docs/legacy/package.json
+          python scripts/migrate-to-monorepo.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          web_path = Path('apps/web/package.json')
+          web = json.loads(web_path.read_text())
+          web['dependencies'].pop('google', None)
+          web['dependencies'].pop('types', None)
+          web_path.write_text(json.dumps(web, indent=2) + '\n')
+
+          ui_path = Path('packages/ui/package.json')
+          ui = json.loads(ui_path.read_text())
+          ui['devDependencies']['@types/node'] = '^20.11.24'
+          ui_path.write_text(json.dumps(ui, indent=2) + '\n')
+          PY
 
       - name: Install dependencies and generate lockfile
         run: pnpm install --no-frozen-lockfile
