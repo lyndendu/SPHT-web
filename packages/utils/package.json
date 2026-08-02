@@ -7,7 +7,7 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -17,8 +17,8 @@
   "devDependencies": {
     "@spht/eslint-config": "workspace:*",
     "@spht/tsconfig": "workspace:*",
-    "@types/node": "^20.11.24",
-    "eslint": "^8.57.0",
-    "typescript": "^5.3.3"
+    "@types/node": "^26.1.2",
+    "eslint": "^9.39.5",
+    "typescript": "^5.9.3"
   }
 }

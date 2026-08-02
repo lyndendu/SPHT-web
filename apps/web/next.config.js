@@ -1,9 +1,23 @@
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@spht/ui', '@spht/utils', '@spht/contracts'],
+  transpilePackages: ["@spht/ui", "@spht/utils", "@spht/contracts"],
   images: {
-    domains: ['lh3.googleusercontent.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.magicui.design",
+        pathname: "/companies/**",
+      },
+    ],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -1,7 +1,4 @@
-from pathlib import Path
-
-Path("packages/eslint-config/next.mjs").write_text(
-    '''import js from "@eslint/js";
+import js from "@eslint/js";
 import nextPluginModule from "@next/eslint-plugin-next";
 import reactPluginModule from "eslint-plugin-react";
 import reactHooksPluginModule from "eslint-plugin-react-hooks";
@@ -58,8 +55,3 @@ const nextConfig = [
 ];
 
 export default nextConfig;
-''',
-    encoding="utf-8",
-)
-
-print("Next flat ESLint config built from official plugins.")
