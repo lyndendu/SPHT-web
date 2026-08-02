@@ -132,6 +132,10 @@ jobs:
               '  files: {\n    ignoreUnknown: true,',
               '  css: { parser: { tailwindDirectives: true } },\n  files: {\n    ignoreUnknown: true,',
           )
+          text = text.replace(
+              'rules: { recommended: true },',
+              'rules: { recommended: true, a11y: { noSvgWithoutTitle: "off" } },',
+          )
           path.write_text(text)
           PY
 
