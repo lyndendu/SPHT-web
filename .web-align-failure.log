@@ -4,18 +4,20 @@ Web stack alignment files prepared.
 Scope: all 8 workspace projects
 ? Verifying lockfile against supply-chain policies (579 entries)...
 Progress: resolved 1, reused 0, downloaded 0, added 0
-Progress: resolved 41, reused 0, downloaded 37, added 0
-Progress: resolved 47, reused 0, downloaded 45, added 0
+Progress: resolved 36, reused 0, downloaded 32, added 0
+Progress: resolved 44, reused 0, downloaded 42, added 0
+Progress: resolved 49, reused 0, downloaded 49, added 0
 Progress: resolved 50, reused 0, downloaded 49, added 0
+Progress: resolved 50, reused 0, downloaded 50, added 0
 Progress: resolved 52, reused 0, downloaded 50, added 0
-✓ Lockfile passes supply-chain policies (579 entries in 5.5s)
-Progress: resolved 53, reused 0, downloaded 51, added 0
-Progress: resolved 205, reused 0, downloaded 146, added 0
-Progress: resolved 221, reused 0, downloaded 197, added 0
-Progress: resolved 316, reused 0, downloaded 232, added 0
-Progress: resolved 404, reused 0, downloaded 322, added 0
-Progress: resolved 479, reused 0, downloaded 363, added 0
-Progress: resolved 590, reused 0, downloaded 526, added 0
+✓ Lockfile passes supply-chain policies (579 entries in 7.3s)
+Progress: resolved 56, reused 0, downloaded 52, added 0
+Progress: resolved 209, reused 0, downloaded 145, added 0
+Progress: resolved 218, reused 0, downloaded 198, added 0
+Progress: resolved 277, reused 0, downloaded 202, added 0
+Progress: resolved 336, reused 0, downloaded 230, added 0
+Progress: resolved 415, reused 0, downloaded 344, added 0
+Progress: resolved 534, reused 0, downloaded 470, added 0
 Packages: +529
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Progress: resolved 592, reused 0, downloaded 530, added 529, done
@@ -29,7 +31,7 @@ Progress: resolved 592, reused 0, downloaded 530, added 529, done
 .../node_modules/@prisma/client postinstall$ node scripts/postinstall.js
 .../node_modules/@vercel/speed-insights postinstall: Done
 .../node_modules/@prisma/client postinstall: Prisma schema loaded from apps/web/prisma/schema.prisma
-.../node_modules/@prisma/client postinstall: ✔ Generated Prisma Client (v5.10.2) to ./node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 51ms
+.../node_modules/@prisma/client postinstall: ✔ Generated Prisma Client (v5.10.2) to ./node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 62ms
 .../node_modules/@prisma/client postinstall: Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 .../node_modules/@prisma/client postinstall: ```
 .../node_modules/@prisma/client postinstall: import { PrismaClient } from '@prisma/client'
@@ -52,7 +54,7 @@ Progress: resolved 592, reused 0, downloaded 530, added 529, done
 . prepare: Done
 apps/web postinstall$ prisma generate
 apps/web postinstall: Prisma schema loaded from prisma/schema.prisma
-apps/web postinstall: ✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 48ms
+apps/web postinstall: ✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 64ms
 apps/web postinstall: Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 apps/web postinstall: ```
 apps/web postinstall: import { PrismaClient } from '@prisma/client'
@@ -78,13 +80,13 @@ devDependencies:
 + turbo 2.10.8
 + typescript 5.9.3 (7.0.2 is available)
 
-Done in 15.8s using pnpm v11.7.0
+Done in 18.9s using pnpm v11.7.0
 == Generate Prisma Client ==
 $ pnpm --filter @spht/web prisma:generate
 $ prisma generate
 Prisma schema loaded from prisma/schema.prisma
 
-✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 54ms
+✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 65ms
 
 Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 ```
@@ -379,144 +381,150 @@ apps/web/app/(marketing)/page.tsx:3:8 lint/correctness/noUnusedImports  FIXABLE 
     5 4 │   
   
 
-apps/web/app/(dashboard)/dashboard/page.tsx:167:22 lint/suspicious/noArrayIndexKey ━━━━━━━━━━━━━━━━━
+apps/web/app/(marketing)/pricing/page.tsx:3:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━
 
-  × Avoid using the index of an array as key property in an element.
+  ! This import is unused.
   
-    165 │       <div className="md:grid md:grid-cols-2 md:gap-3 lg:grid lg:grid-cols-3 lg:gap-4 relative justify-center mx-auto">
-    166 │         {quotes.map((quote, index) => (
-  > 167 │           <Card key={index} className="w-[350px]">
-        │                      ^^^^^
-    168 │             <CardHeader>
-    169 │               <CardTitle>{quote}</CardTitle>
+    1 │ "use client";
+    2 │ 
+  > 3 │ import { buttonVariants } from "@spht/ui/button";
+      │        ^^^^^^^^^^^^^^^^^^
+    4 │ import ShinyButton from "@spht/ui/magicui/shiny-button";
+    5 │ import { cn } from "@spht/utils";
   
-  i This is the source of the key value.
+  i Unused imports might be the result of an incomplete refactoring.
   
-    165 │       <div className="md:grid md:grid-cols-2 md:gap-3 lg:grid lg:grid-cols-3 lg:gap-4 relative justify-center mx-auto">
-  > 166 │         {quotes.map((quote, index) => (
-        │                             ^^^^^
-    167 │           <Card key={index} className="w-[350px]">
-    168 │             <CardHeader>
+  i Unsafe fix: Remove the unused imports.
   
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
-apps/web/app/globals.css:4:2 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  × Tailwind-specific syntax is disabled.
-  
-    2 │ @import "tw-animate-css";
-    3 │ 
-  > 4 │ @source "../**/*.{js,ts,jsx,tsx,mdx}";
-      │  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    5 │ @source "../../../packages/ui/src/**/*.{js,ts,jsx,tsx,mdx}";
-    6 │ 
-  
-  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+     1  1 │   "use client";
+     2    │ - 
+     3    │ - import·{·buttonVariants·}·from·"@spht/ui/button";
+        2 │ + 
+     4  3 │   import ShinyButton from "@spht/ui/magicui/shiny-button";
+     5  4 │   import { cn } from "@spht/utils";
   
 
-apps/web/app/globals.css:5:2 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+apps/web/app/(marketing)/pricing/page.tsx:5:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━
 
-  × Tailwind-specific syntax is disabled.
+  ! This import is unused.
   
-    4 │ @source "../**/*.{js,ts,jsx,tsx,mdx}";
-  > 5 │ @source "../../../packages/ui/src/**/*.{js,ts,jsx,tsx,mdx}";
-      │  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    6 │ 
-    7 │ @custom-variant dark (&:is(.dark *));
+    3 │ import { buttonVariants } from "@spht/ui/button";
+    4 │ import ShinyButton from "@spht/ui/magicui/shiny-button";
+  > 5 │ import { cn } from "@spht/utils";
+      │        ^^^^^^
+    6 │ import Link from "next/link";
+    7 │ import { useRouter } from "next/navigation";
   
-  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  i Unused imports might be the result of an incomplete refactoring.
   
-
-apps/web/app/globals.css:7:2 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  × Tailwind-specific syntax is disabled.
+  i Unsafe fix: Remove the unused imports.
   
-    5 │ @source "../../../packages/ui/src/**/*.{js,ts,jsx,tsx,mdx}";
-    6 │ 
-  > 7 │ @custom-variant dark (&:is(.dark *));
-      │  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    8 │ 
-    9 │ @theme inline {
-  
-  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+     3  3 │   import { buttonVariants } from "@spht/ui/button";
+     4  4 │   import ShinyButton from "@spht/ui/magicui/shiny-button";
+     5    │ - import·{·cn·}·from·"@spht/utils";
+     6  5 │   import Link from "next/link";
+     7  6 │   import { useRouter } from "next/navigation";
   
 
-apps/web/app/globals.css:9:2 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+apps/web/app/(marketing)/pricing/page.tsx:7:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━
 
-  × Tailwind-specific syntax is disabled.
+  ! This import is unused.
   
-     7 │ @custom-variant dark (&:is(.dark *));
-     8 │ 
-   > 9 │ @theme inline {
-       │  ^^^^^^^^^^^^^^
-  > 10 │   --color-background: hsl(var(--background));
-        ...
-  > 36 │   --animate-shine-pulse: shine-pulse 2s ease-in-out infinite;
-  > 37 │ }
-       │ ^
-    38 │ 
-    39 │ @utility container {
+    5 │ import { cn } from "@spht/utils";
+    6 │ import Link from "next/link";
+  > 7 │ import { useRouter } from "next/navigation";
+      │        ^^^^^^^^^^^^^
+    8 │ import { Icons } from "@/components/more-icons";
+    9 │ 
   
-  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  i Unused imports might be the result of an incomplete refactoring.
   
-
-apps/web/app/globals.css:39:2 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  × Tailwind-specific syntax is disabled.
+  i Unsafe fix: Remove the unused imports.
   
-    37 │ }
-    38 │ 
-  > 39 │ @utility container {
-       │  ^^^^^^^^^^^^^^^^^^^
-  > 40 │   width: 100%;
-        ...
-  > 47 │   @media (width >= 96rem) { max-width: 1400px; }
-  > 48 │ }
-       │ ^
-    49 │ 
-    50 │ @keyframes shine-pulse {
-  
-  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+     5  5 │   import { cn } from "@spht/utils";
+     6  6 │   import Link from "next/link";
+     7    │ - import·{·useRouter·}·from·"next/navigation";
+     8  7 │   import { Icons } from "@/components/more-icons";
+     9  8 │   
   
 
-apps/web/app/globals.css:192:6 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+apps/web/components/icons.tsx:5:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  × Tailwind-specific syntax is disabled.
+  × Alternative text title element cannot be empty
   
-    190 │ @layer base {
-    191 │   * {
-  > 192 │     @apply border-border;
-        │      ^^^^^^^^^^^^^^^^^^^^
-    193 │   }
-    194 │   body {
+    3 │ export const Icons = {
+    4 │   logo: (props: IconProps) => (
+  > 5 │     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
+      │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    6 │       <rect width="256" height="256" fill="none" />
+    7 │       <line
   
-  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
 
-apps/web/app/globals.css:195:6 parse ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+apps/web/components/icons.tsx:32:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  × Tailwind-specific syntax is disabled.
+  × Alternative text title element cannot be empty
   
-    193 │   }
-    194 │   body {
-  > 195 │     @apply bg-background text-foreground;
-        │      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    196 │   }
-    197 │ }
+    30 │   ),
+    31 │   twitter: (props: IconProps) => (
+  > 32 │     <svg {...props} height="23" viewBox="0 0 1200 1227" width="23" xmlns="http://www.w3.org/2000/svg">
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    33 │       <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
+    34 │     </svg>
   
-  i Enable `tailwindDirectives` in the css parser options, or remove this if you are not using Tailwind CSS.
+  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
+  
+
+apps/web/components/icons.tsx:37:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Alternative text title element cannot be empty
+  
+    35 │   ),
+    36 │   gitHub: (props: IconProps) => (
+  > 37 │     <svg viewBox="0 0 438.549 438.549" {...props}>
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    38 │       <path
+    39 │         fill="currentColor"
+  
+  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
+  
+
+apps/web/components/icons.tsx:45:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Alternative text title element cannot be empty
+  
+    43 │   ),
+    44 │   radix: (props: IconProps) => (
+  > 45 │     <svg viewBox="0 0 25 25" fill="none" {...props}>
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    46 │       <path d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z" fill="currentcolor"></path>
+    47 │       <path d="M12 0H4V8H12V0Z" fill="currentcolor"></path>
+  
+  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
+  
+
+apps/web/components/icons.tsx:55:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Alternative text title element cannot be empty
+  
+    53 │   ),
+    54 │   aria: (props: IconProps) => (
+  > 55 │     <svg role="img" viewBox="0 0 24 24" fill="currentColor" {...props}>
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    56 │       <path d="M13.966 22.624l-1.69-4.281H8.122l3.892-9.144 5.662 13.425zM8.884 1.376H0v21.248zm15.116 0h-8.884L24 22.624Z" />
+    57 │     </svg>
+  
+  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
 
 Skipped 69 suggested fixes.
 If you wish to apply the suggested (unsafe) fixes, use the command biome check --write --unsafe
 
 The number of diagnostics exceeds the limit allowed. Use --max-diagnostics to increase it.
-Diagnostics not shown: 39.
-Checked 90 files in 75ms. Fixed 66 files.
-Found 26 errors.
+Diagnostics not shown: 30.
+Checked 90 files in 98ms. Fixed 67 files.
+Found 17 errors.
 Found 31 warnings.
 Found 2 infos.
 check ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
