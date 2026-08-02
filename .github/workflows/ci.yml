@@ -119,36 +119,50 @@ jobs:
         shell: bash
         run: |
           set +e
-          rm -f .web-align-failure.log
-          {
-            echo '== Apply deterministic migration =='
-            node scripts/align-web-stack.mjs
-            echo '== Resolve upgraded workspace =='
-            pnpm install --no-frozen-lockfile
-            echo '== Generate Prisma Client =='
-            pnpm prisma:generate
-            echo '== Apply safe Biome fixes =='
-            pnpm check:fix
-            echo '== Type check =='
-            pnpm typecheck
-            echo '== Biome check =='
-            pnpm check
-            echo '== Supplementary ESLint =='
-            pnpm lint
-            echo '== Production build =='
-            pnpm build
-            echo '== Safety assertions =='
-            grep -F 'provider = "postgresql"' apps/web/prisma/schema.prisma
-            grep -F 'next-auth' apps/web/package.json
-            grep -F 'stripe' apps/web/package.json
-            test -d apps/web/app/api
-            test -d packages/ui/src/magicui
-            test ! -f apps/web/tailwind.config.ts
-            grep -F '@source "../../../packages/ui/src' apps/web/app/globals.css
-            grep -F 'reactCompiler: true' apps/web/next.config.js
-            ! grep -R '@spht/tsconfig' apps packages --include='package.json' --include='tsconfig.json'
-          } > /tmp/web-align.log 2>&1
-          status=$?
+          rm -f /tmp/web-align.log .web-align-failure.log
+
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/align-web-stack.mjs')
+          text = path.read_text()
+          text = text.replace('"packages/biome-config/biome.json"', '"packages/biome-config/base.json"')
+          text = text.replace('files: ["biome.json"]', 'files: ["base.json"]')
+          text = text.replace('./packages/biome-config/biome.json', './packages/biome-config/base.json')
+          path.write_text(text)
+          PY
+
+          run_step() {
+            echo "== $1 ==" | tee -a /tmp/web-align.log
+            shift
+            "$@" 2>&1 | tee -a /tmp/web-align.log
+            return ${PIPESTATUS[0]}
+          }
+
+          status=0
+          run_step "Apply deterministic migration" node scripts/align-web-stack.mjs || status=$?
+          if [ "$status" -eq 0 ]; then run_step "Resolve upgraded workspace" pnpm install --no-frozen-lockfile || status=$?; fi
+          if [ "$status" -eq 0 ]; then run_step "Generate Prisma Client" pnpm prisma:generate || status=$?; fi
+          if [ "$status" -eq 0 ]; then run_step "Apply safe Biome fixes" pnpm check:fix || status=$?; fi
+          if [ "$status" -eq 0 ]; then run_step "Type check" pnpm typecheck || status=$?; fi
+          if [ "$status" -eq 0 ]; then run_step "Biome check" pnpm check || status=$?; fi
+          if [ "$status" -eq 0 ]; then run_step "Supplementary ESLint" pnpm lint || status=$?; fi
+          if [ "$status" -eq 0 ]; then run_step "Production build" pnpm build || status=$?; fi
+
+          if [ "$status" -eq 0 ]; then
+            {
+              echo '== Safety assertions =='
+              grep -F 'provider = "postgresql"' apps/web/prisma/schema.prisma
+              grep -F 'next-auth' apps/web/package.json
+              grep -F 'stripe' apps/web/package.json
+              test -d apps/web/app/api
+              test -d packages/ui/src/magicui
+              test ! -f apps/web/tailwind.config.ts
+              grep -F '@source "../../../packages/ui/src' apps/web/app/globals.css
+              grep -F 'reactCompiler: true' apps/web/next.config.js
+              ! grep -R '@spht/tsconfig' apps packages --include='package.json' --include='tsconfig.json'
+            } 2>&1 | tee -a /tmp/web-align.log
+            status=${PIPESTATUS[0]}
+          fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -159,20 +173,17 @@ jobs:
             git add .web-align-failure.log
             git commit -m "ci: record Web alignment migration failure"
             git push origin HEAD:feat/align-web-admin-stack
-            cat /tmp/web-align.log
             exit "$status"
           fi
 
-          python - <<'PY'
-          from pathlib import Path
-          path = Path('.github/workflows/ci.yml')
-          text = path.read_text()
-          text = text.split('\n  # BEGIN TEMP ALIGNMENT JOB\n', 1)[0].rstrip() + '\n'
-          path.write_text(text)
-          PY
+          # The GitHub App may not push workflow-file changes. Restore all
+          # workflow files exactly as they were in the triggering commit;
+          # permanent CI cleanup is applied later through the GitHub connector.
+          git checkout HEAD -- .github/workflows/ci.yml
+          git checkout HEAD -- .github/workflows/web-align-apply.yml
+          git checkout HEAD -- .github/workflows/web-align-baseline.yml
+
           rm -f scripts/align-web-stack.mjs
-          rm -f .github/workflows/web-align-apply.yml
-          rm -f .github/workflows/web-align-baseline.yml
           rm -f .baseline-trigger
           rm -f .web-align-failure.log
           rm -f docs/superpowers/plans/.branch-marker
@@ -184,5 +195,4 @@ jobs:
           git add -A
           git commit -m "refactor: align Web engineering stack with Admin"
           git push origin HEAD:feat/align-web-admin-stack
-          cat /tmp/web-align.log
   # END TEMP ALIGNMENT JOB
