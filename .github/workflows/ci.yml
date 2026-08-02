@@ -146,14 +146,7 @@ jobs:
           run_step "Apply deterministic migration" node scripts/align-web-stack.mjs || status=$?
 
           if [ "$status" -eq 0 ]; then
-            python - <<'PY'
-            from pathlib import Path
-            path = Path('apps/web/app/(dashboard)/dashboard/page.tsx')
-            text = path.read_text()
-            text = text.replace('quotes.map((quote, index) => (', 'quotes.map((quote) => (')
-            text = text.replace('key={index}', 'key={String(quote)}')
-            path.write_text(text)
-            PY
+            python -c "from pathlib import Path; p=Path('apps/web/app/(dashboard)/dashboard/page.tsx'); t=p.read_text(); t=t.replace('quotes.map((quote, index) => (', 'quotes.map((quote) => (').replace('key={index}', 'key={String(quote)}'); p.write_text(t)"
           fi
 
           if [ "$status" -eq 0 ]; then run_step "Resolve upgraded workspace" pnpm install --no-frozen-lockfile || status=$?; fi
