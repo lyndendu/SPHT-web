@@ -101,10 +101,10 @@ jobs:
       - name: Production build
         run: pnpm build
 
-      - name: Remove temporary migration files
+      - name: Prepare code-only migration commit
         run: |
           rm scripts/migrate-to-monorepo.py
-          rm .github/workflows/repository-snapshot.yml
+          rm .github/workflows/ci.yml
           rmdir scripts 2>/dev/null || true
 
       - name: Commit migration to main
