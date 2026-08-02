@@ -1,0 +1,17 @@
+{
+  "name": "@spht/eslint-config",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./next": "./next.js"
+  },
+  "peerDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.0.4"
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^7.3.1"
+  }
+}

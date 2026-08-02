@@ -1,0 +1,10 @@
+{
+  "extends": "@spht/tsconfig/base.json",
+  "compilerOptions": {
+    "jsx": "preserve"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
+}
