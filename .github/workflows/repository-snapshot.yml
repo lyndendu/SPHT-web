@@ -66,6 +66,27 @@ jobs:
           ui = json.loads(ui_path.read_text())
           ui['devDependencies']['@types/node'] = '^20.11.24'
           ui_path.write_text(json.dumps(ui, indent=2) + '\n')
+
+          eslint_path = Path('packages/eslint-config/package.json')
+          eslint_package = json.loads(eslint_path.read_text())
+          eslint_package['dependencies'] = {
+              '@typescript-eslint/parser': '^7.3.1'
+          }
+          eslint_path.write_text(json.dumps(eslint_package, indent=2) + '\n')
+
+          Path('packages/eslint-config/index.js').write_text(
+              "module.exports = {\n"
+              "  parser: require.resolve('@typescript-eslint/parser'),\n"
+              "  parserOptions: {\n"
+              "    ecmaVersion: 'latest',\n"
+              "    sourceType: 'module',\n"
+              "    ecmaFeatures: { jsx: true },\n"
+              "  },\n"
+              "  env: { browser: true, node: true, es2022: true },\n"
+              "  extends: ['eslint:recommended'],\n"
+              "  rules: { 'no-undef': 'off' },\n"
+              "}\n"
+          )
           PY
 
       - name: Install dependencies and generate lockfile
