@@ -57,6 +57,7 @@ jobs:
           python scripts/modern-stack-compat.py
           python scripts/app-stack-compat.py
           python scripts/eslint-esm-compat.py
+          python scripts/lint-source-fixes.py
           python scripts/pnpm-build-policy.py
 
       - name: Upgrade framework, auth and UI dependencies
@@ -86,7 +87,7 @@ jobs:
 
       - name: Commit verified maintenance fixes
         run: |
-          rm scripts/resolve-maintenance-warnings.py scripts/modern-stack-compat.py scripts/app-stack-compat.py scripts/eslint-esm-compat.py scripts/pnpm-build-policy.py
+          rm scripts/resolve-maintenance-warnings.py scripts/modern-stack-compat.py scripts/app-stack-compat.py scripts/eslint-esm-compat.py scripts/lint-source-fixes.py scripts/pnpm-build-policy.py
           rm -f .maintenance-trigger
           rmdir scripts 2>/dev/null || true
           git config user.name "github-actions[bot]"
