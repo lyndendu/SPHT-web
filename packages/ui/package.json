@@ -10,7 +10,9 @@
   },
   "scripts": {
     "lint": "eslint . --max-warnings=0",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format": "biome format --write src",
+    "check": "biome check src"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.2.6",
@@ -34,13 +36,13 @@
   },
   "devDependencies": {
     "@spht/eslint-config": "workspace:*",
-    "@spht/tsconfig": "workspace:*",
     "@types/node": "^26.1.2",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "eslint": "^9.39.5",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "@spht/typescript-config": "workspace:*"
   }
 }

@@ -1,14 +1,13 @@
+import { buttonVariants } from "@spht/ui/button";
+import { cn } from "@spht/utils";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
 import { MainNav } from "@/components/main-nav";
 import MobileNav from "@/components/mobile-nav";
-import { ModeToggle } from "@/components/toggle";
 import { SiteFooter } from "@/components/site-footer";
+import { ModeToggle } from "@/components/toggle";
 import { getCurrentUser } from "@/lib/session";
-import { buttonVariants } from "@spht/ui/button";
-import { cn } from "@spht/utils";
 
 export const metadata: Metadata = {
   title: "QuotesAI",
@@ -35,13 +34,7 @@ export default async function MarketingLayout({
           <nav className="md:flex">
             <div className="flex gap-4">
               <ModeToggle />
-              <Link
-                href="/login"
-                className={cn(
-                  buttonVariants({ variant: "default", size: "sm" }),
-                  "px-4",
-                )}
-              >
+              <Link href="/login" className={cn(buttonVariants({ variant: "default", size: "sm" }), "px-4")}>
                 Get Started
               </Link>
             </div>

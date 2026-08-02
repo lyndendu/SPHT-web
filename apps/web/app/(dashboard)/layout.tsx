@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 
 import { LoggedInNav } from "@/components/loggedin-nav";
-import { ModeToggle } from "@/components/toggle";
 import { SiteFooter } from "@/components/site-footer";
+import { ModeToggle } from "@/components/toggle";
 import { UserAccountNav } from "@/components/user-account-nav";
 import { getCurrentUser } from "@/lib/session";
 
@@ -10,9 +10,7 @@ interface DashboardLayoutProps {
   children?: React.ReactNode;
 }
 
-export default async function DashboardLayout({
-  children,
-}: DashboardLayoutProps) {
+export default async function DashboardLayout({ children }: DashboardLayoutProps) {
   const user = await getCurrentUser();
 
   if (!user) {
@@ -36,9 +34,7 @@ export default async function DashboardLayout({
           </div>
         </div>
       </header>
-      <main className="flex w-full flex-1 flex-col justify-center">
-        {children}
-      </main>
+      <main className="flex w-full flex-1 flex-col justify-center">{children}</main>
       <SiteFooter className="border-t" />
     </div>
   );

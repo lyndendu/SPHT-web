@@ -1,2 +1,2 @@
-export { userNameSchema } from './user'
-export { UsernameValidator } from './username'
+export { userNameSchema } from "./user";
+export { UsernameValidator } from "./username";

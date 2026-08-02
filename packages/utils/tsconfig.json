@@ -1,5 +1,5 @@
 {
-  "extends": "@spht/tsconfig/base.json",
+  "extends": "@spht/typescript-config/base.json",
   "compilerOptions": {
     "types": ["node"]
   },

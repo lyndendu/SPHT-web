@@ -1,4 +1,3 @@
-import type { FunctionComponent, SVGProps } from "react";
 import {
   AlertTriangle,
   ArrowRight,
@@ -24,6 +23,7 @@ import {
   User,
   X,
 } from "lucide-react";
+import type { FunctionComponent, SVGProps } from "react";
 
 export type Icon = FunctionComponent<SVGProps<SVGSVGElement>>;
 

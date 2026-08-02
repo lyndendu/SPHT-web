@@ -1,10 +1,6 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
-
-import { cn } from "@spht/utils";
-import { Icons } from "@/components/icons";
+import { Badge } from "@spht/ui/badge";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,15 +10,17 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@spht/ui/navigation-menu";
-import { Badge } from "@spht/ui/badge";
 
+import { cn } from "@spht/utils";
+import Link from "next/link";
+import * as React from "react";
+import { Icons } from "@/components/icons";
 
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Features",
     href: "/#features",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    description: "A modal dialog that interrupts the user with important content and expects a response.",
   },
   // {
   //   title: "Hover Card",
@@ -56,8 +54,6 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export function MainNav() {
-
-
   return (
     <div className="mr-4 md:flex">
       <Link href="/" className="lg:mr-6 sm:mr-0 flex items-center gap-2">
@@ -78,9 +74,7 @@ export function MainNav() {
                       href="/"
                     >
                       <Icons.logo className="h-6 w-6" />
-                      <div className="mb-2 mt-4 text-lg font-medium">
-                        QuotesAI
-                      </div>
+                      <div className="mb-2 mt-4 text-lg font-medium">QuotesAI</div>
                       <p className="text-sm leading-tight text-muted-foreground">
                         Quotes from GOAT 🐐 to make your day and life
                       </p>
@@ -101,14 +95,10 @@ export function MainNav() {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/#features" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Features
-              </NavigationMenuLink>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>Features</NavigationMenuLink>
             </Link>
             <Link href="/pricing" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Price
-              </NavigationMenuLink>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>Price</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           {/* <NavigationMenuItem>
@@ -124,28 +114,25 @@ export function MainNav() {
   );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
+const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">>(
+  ({ className, title, children, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <a
+            ref={ref}
+            className={cn(
+              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              className,
+            )}
+            {...props}
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+          </a>
+        </NavigationMenuLink>
+      </li>
+    );
+  },
+);
 ListItem.displayName = "ListItem";

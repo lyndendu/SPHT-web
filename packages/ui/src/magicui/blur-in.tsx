@@ -1,6 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
 import { cn } from "@spht/utils";
+import { motion } from "framer-motion";
 
 interface BlurIntProps {
   word: string;

@@ -1,5 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { buffer } from "micro";
+import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 
 import { auth } from "@/lib/auth";
@@ -29,11 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     let event: Stripe.Event;
     try {
-      event = stripe.webhooks.constructEvent(
-        payload.toString(),
-        signature,
-        endpointSecret,
-      );
+      event = stripe.webhooks.constructEvent(payload.toString(), signature, endpointSecret);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unknown error";
       return res.status(400).send(`Webhook Error: ${message}`);
@@ -66,9 +62,7 @@ async function handleCheckoutSessionCompleted(event: Stripe.Event) {
     return;
   }
 
-  const subscription = await stripe.subscriptions.retrieve(
-    checkoutSession.subscription as string,
-  );
+  const subscription = await stripe.subscriptions.retrieve(checkoutSession.subscription as string);
 
   await db.user.update({
     where: { id: user.id },
@@ -106,10 +100,7 @@ async function handleInvoicePaymentSucceeded(event: Stripe.Event) {
   });
 }
 
-async function handleCheckoutCreation(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+async function handleCheckoutCreation(req: NextApiRequest, res: NextApiResponse) {
   const session = await auth(req, res);
 
   if (!session?.user?.id) {

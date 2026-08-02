@@ -10,16 +10,18 @@
   },
   "scripts": {
     "lint": "eslint . --max-warnings=0",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format": "biome format --write src",
+    "check": "biome check src"
   },
   "dependencies": {
-    "zod": "^3.22.4"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@spht/eslint-config": "workspace:*",
-    "@spht/tsconfig": "workspace:*",
     "@types/node": "^26.1.2",
     "eslint": "^9.39.5",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "@spht/typescript-config": "workspace:*"
   }
 }

@@ -1,24 +1,13 @@
 import Image from "next/image";
 
-const companies = [
-  "Google",
-  "Microsoft",
-  "Amazon",
-  "Netflix",
-  "YouTube",
-  "Instagram",
-  "Uber",
-  "Spotify",
-];
+const companies = ["Google", "Microsoft", "Amazon", "Netflix", "YouTube", "Instagram", "Uber", "Spotify"];
 
 export function Companies() {
   return (
     <section id="companies">
       <div className="pb-10 pt-1">
         <div className="container mx-auto px-4 md:px-8">
-          <h3 className="pb-2 text-center text-sm font-semibold text-gray-500">
-            TRUSTED BY LEADING TEAMS
-          </h3>
+          <h3 className="pb-2 text-center text-sm font-semibold text-gray-500">TRUSTED BY LEADING TEAMS</h3>
           <div className="relative mt-6">
             <div className="grid grid-cols-2 place-items-center gap-2 md:grid-cols-4 xl:grid-cols-8 xl:gap-4">
               {companies.map((company) => (
