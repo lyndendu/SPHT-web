@@ -61,12 +61,12 @@ jobs:
 
       - name: Upgrade framework, auth and UI dependencies
         run: |
-          pnpm --filter @spht/web remove next-headers @next-auth/prisma-adapter radix-ui
+          pnpm --filter @spht/web remove next-headers @next-auth/prisma-adapter radix-ui eslint-config-next
           pnpm --filter @spht/web add next@latest react@latest react-dom@latest next-auth@beta @auth/prisma-adapter@latest recharts@latest
           pnpm --filter @spht/web add @radix-ui/react-avatar@latest @radix-ui/react-dialog@latest @radix-ui/react-dropdown-menu@latest @radix-ui/react-icons@latest @radix-ui/react-label@latest @radix-ui/react-navigation-menu@latest @radix-ui/react-scroll-area@latest @radix-ui/react-slot@latest @radix-ui/react-toast@latest framer-motion@latest lucide-react@latest next-themes@latest vaul@latest
-          pnpm --filter @spht/web add -D eslint@^9.0.0 eslint-config-next@latest typescript@~5.9.0 @types/node@latest @types/react@latest @types/react-dom@latest
-          pnpm --filter @spht/eslint-config remove @typescript-eslint/parser
-          pnpm --filter @spht/eslint-config add @eslint/js@^9.0.0 eslint-config-next@latest typescript-eslint@latest
+          pnpm --filter @spht/web add -D eslint@^9.0.0 typescript@~5.9.0 @types/node@latest @types/react@latest @types/react-dom@latest
+          pnpm --filter @spht/eslint-config remove @typescript-eslint/parser eslint-config-next
+          pnpm --filter @spht/eslint-config add @eslint/js@^9.0.0 @next/eslint-plugin-next@latest eslint-plugin-react@latest eslint-plugin-react-hooks@latest eslint-plugin-jsx-a11y@latest globals@latest typescript-eslint@latest
           pnpm --filter @spht/eslint-config add -D eslint@^9.0.0 typescript@~5.9.0
           pnpm --filter @spht/ui add @radix-ui/react-avatar@latest @radix-ui/react-dialog@latest @radix-ui/react-dropdown-menu@latest @radix-ui/react-icons@latest @radix-ui/react-label@latest @radix-ui/react-navigation-menu@latest @radix-ui/react-scroll-area@latest @radix-ui/react-slot@latest @radix-ui/react-toast@latest framer-motion@latest lucide-react@latest vaul@latest
           pnpm --filter @spht/ui add -D eslint@^9.0.0 typescript@~5.9.0 @types/node@latest @types/react@latest @types/react-dom@latest react@latest react-dom@latest
