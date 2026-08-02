@@ -55,6 +55,7 @@ jobs:
         run: |
           python scripts/resolve-maintenance-warnings.py
           python scripts/modern-stack-compat.py
+          python scripts/pnpm-build-policy.py
 
       - name: Upgrade framework, auth and UI dependencies
         run: |
@@ -83,7 +84,7 @@ jobs:
 
       - name: Commit verified maintenance fixes
         run: |
-          rm scripts/resolve-maintenance-warnings.py scripts/modern-stack-compat.py
+          rm scripts/resolve-maintenance-warnings.py scripts/modern-stack-compat.py scripts/pnpm-build-policy.py
           rm -f .maintenance-trigger
           rmdir scripts 2>/dev/null || true
           git config user.name "github-actions[bot]"
