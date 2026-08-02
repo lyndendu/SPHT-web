@@ -128,6 +128,10 @@ jobs:
           text = text.replace('"packages/biome-config/biome.json"', '"packages/biome-config/base.json"')
           text = text.replace('files: ["biome.json"]', 'files: ["base.json"]')
           text = text.replace('./packages/biome-config/biome.json', './packages/biome-config/base.json')
+          text = text.replace(
+              '  files: {\n    ignoreUnknown: true,',
+              '  css: { parser: { tailwindDirectives: true } },\n  files: {\n    ignoreUnknown: true,',
+          )
           path.write_text(text)
           PY
 
@@ -140,6 +144,18 @@ jobs:
 
           status=0
           run_step "Apply deterministic migration" node scripts/align-web-stack.mjs || status=$?
+
+          if [ "$status" -eq 0 ]; then
+            python - <<'PY'
+            from pathlib import Path
+            path = Path('apps/web/app/(dashboard)/dashboard/page.tsx')
+            text = path.read_text()
+            text = text.replace('quotes.map((quote, index) => (', 'quotes.map((quote) => (')
+            text = text.replace('key={index}', 'key={String(quote)}')
+            path.write_text(text)
+            PY
+          fi
+
           if [ "$status" -eq 0 ]; then run_step "Resolve upgraded workspace" pnpm install --no-frozen-lockfile || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Generate Prisma Client" pnpm prisma:generate || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Apply safe Biome fixes" pnpm check:fix || status=$?; fi
@@ -176,9 +192,6 @@ jobs:
             exit "$status"
           fi
 
-          # The GitHub App may not push workflow-file changes. Restore all
-          # workflow files exactly as they were in the triggering commit;
-          # permanent CI cleanup is applied later through the GitHub connector.
           git checkout HEAD -- .github/workflows/ci.yml
           git checkout HEAD -- .github/workflows/web-align-apply.yml
           git checkout HEAD -- .github/workflows/web-align-baseline.yml
