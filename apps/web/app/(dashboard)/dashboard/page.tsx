@@ -59,30 +59,28 @@
 //         </Card>
 //         </div>
 //       <div className="md:grid md:grid-cols-2 md:gap-3 lg:grid lg:grid-cols-3 lg:gap-4 relative justify-center mx-auto">
-        
-//         {quotes.map((quote, index) => (
 
-          
-            
-//           <Card key={index} className="w-[350px]">
+//         {quotes.map((quote) => (
+
+//           <Card key={String(quote)} className="w-[350px]">
 //             <CardHeader>
 //               <CardTitle>{quote}</CardTitle>
 //               <CardDescription>
 //                 <a href="https://www.goodreads.com/quotes/tag/inspirational">Visit this website for daily quotes</a>
 //               </CardDescription>
 //             </CardHeader>
-//             {/* @ts-ignore */}
+//             {/* @ts-expect-error */}
 //             {/* <CardContent> */}
-//                {/* @ts-ignore */}
-//               {/* <p key={index}>{quote}</p>
+//                {/* @ts-expect-error */}
+//               {/* <p key={String(quote)}>{quote}</p>
 //             </CardContent> */}
 //           </Card>
-         
+
 //         ))}
-       
+
 //          </div>
 //       </div>
-   
+
 //   );
 // }
 
@@ -90,20 +88,13 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { Button } from "@spht/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@spht/ui/card";
 import { Input } from "@spht/ui/input";
 import { Label } from "@spht/ui/label";
 import { cn } from "@spht/utils";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@spht/ui/card";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function DashboardPage() {
   const [hasPaid, setHasPaid] = useState(false);
@@ -112,28 +103,26 @@ function DashboardPage() {
   const [specialQuote, setspecialQuote] = useState([]);
 
   // useEffect(() => {
-    const handleCheckout = async () => {
-      // Call your API endpoint to create a checkout session
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      const { url } = await res.json();
-  
-      // Redirect to Stripe Checkout
-      if (url) {
-        window.location.href = url;
-      } else {
-        // Handle error (e.g., display a message)
-        console.error('Failed to start the checkout process.');
-      }
-  
-      
-    };
-  
+  const handleCheckout = async () => {
+    // Call your API endpoint to create a checkout session
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const { url } = await res.json();
+
+    // Redirect to Stripe Checkout
+    if (url) {
+      window.location.href = url;
+    } else {
+      // Handle error (e.g., display a message)
+      console.error("Failed to start the checkout process.");
+    }
+  };
+
   const getQuotes = async () => {
     const response = await axios.get(`/api/scrapper?tag=${tag}`);
     setQuotes(response.data.quotes);
@@ -174,8 +163,8 @@ function DashboardPage() {
       </div>
 
       <div className="md:grid md:grid-cols-2 md:gap-3 lg:grid lg:grid-cols-3 lg:gap-4 relative justify-center mx-auto">
-        {quotes.map((quote, index) => (
-          <Card key={index} className="w-[350px]">
+        {quotes.map((quote) => (
+          <Card key={String(quote)} className="w-[350px]">
             <CardHeader>
               <CardTitle>{quote}</CardTitle>
               <CardDescription>

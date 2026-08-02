@@ -1,8 +1,7 @@
-import * as React from "react"
-
 // import { siteConfig } from "@/config/site"
-import { cn } from "@spht/utils"
-import { Icons } from "@/components/icons"
+import { cn } from "@spht/utils";
+import type * as React from "react";
+import { Icons } from "@/components/icons";
 // import { ModeToggle } from "@/components/mode-toggle"
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
@@ -30,7 +29,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               Vercel
             </a>
-            . Component Credits to {" "}
+            . Component Credits to{" "}
             <a
               href="https://twitter.com/shadcn"
               target="_blank"
@@ -53,14 +52,14 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
         </div>
         {/* <ModeToggle /> */}
         <a
-              href="https://twitter.com/kathanmehtaa"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium text-2xl dark:md:hover:bg-gray-800 border border-spacing-4 border-opacity-80 rounded px-2"
-            >
-              𝕏
-            </a>
+          href="https://twitter.com/kathanmehtaa"
+          target="_blank"
+          rel="noreferrer"
+          className="font-medium text-2xl dark:md:hover:bg-gray-800 border border-spacing-4 border-opacity-80 rounded px-2"
+        >
+          𝕏
+        </a>
       </div>
     </footer>
-  )
+  );
 }

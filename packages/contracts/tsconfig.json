@@ -1,6 +1,4 @@
 {
-  "extends": "@spht/tsconfig/base.json",
-  "include": [
-    "src/**/*.ts"
-  ]
+  "extends": "@spht/typescript-config/base.json",
+  "include": ["src/**/*.ts"]
 }

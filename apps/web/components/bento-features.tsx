@@ -1,17 +1,8 @@
+import { BellIcon, BookmarkIcon, CopyIcon, GlobeIcon, InputIcon } from "@radix-ui/react-icons";
 import { BentoCard, BentoGrid } from "@spht/ui/magicui/bento-grid";
-import {
-  BellIcon,
-  BookmarkIcon,
-  CopyIcon,
-  GlobeIcon,
-  InputIcon,
-} from "@radix-ui/react-icons";
 
 const decorativeBackground = (
-  <div
-    aria-hidden="true"
-    className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-muted opacity-60 blur-3xl"
-  />
+  <div aria-hidden="true" className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-muted opacity-60 blur-3xl" />
 );
 
 const features = [

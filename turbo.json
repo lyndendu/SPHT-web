@@ -6,28 +6,24 @@
       "persistent": true
     },
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**",
-        "dist/**"
-      ]
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "start": {
       "cache": false,
       "persistent": true
     },
     "lint": {
-      "dependsOn": [
-        "^lint"
-      ]
+      "dependsOn": ["^lint"]
     },
     "typecheck": {
-      "dependsOn": [
-        "^typecheck"
-      ]
+      "dependsOn": ["^typecheck"]
+    },
+    "check": {
+      "dependsOn": ["^check"]
+    },
+    "format": {
+      "cache": false
     }
   }
 }

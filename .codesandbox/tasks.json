@@ -1,13 +1,13 @@
 {
   "setupTasks": [
-    {"name": "Enable Corepack", "command": "corepack enable"},
-    {"name": "Install Dependencies", "command": "pnpm install"}
+    { "name": "Enable Corepack", "command": "corepack enable" },
+    { "name": "Install Dependencies", "command": "pnpm install" }
   ],
   "tasks": {
-    "dev": {"name": "dev", "command": "pnpm dev", "runAtStart": true},
-    "build": {"name": "build", "command": "pnpm build"},
-    "start": {"name": "start", "command": "pnpm start"},
-    "lint": {"name": "lint", "command": "pnpm lint"},
-    "typecheck": {"name": "typecheck", "command": "pnpm typecheck"}
+    "dev": { "name": "dev", "command": "pnpm dev", "runAtStart": true },
+    "build": { "name": "build", "command": "pnpm build" },
+    "start": { "name": "start", "command": "pnpm start" },
+    "lint": { "name": "lint", "command": "pnpm lint" },
+    "typecheck": { "name": "typecheck", "command": "pnpm typecheck" }
   }
 }

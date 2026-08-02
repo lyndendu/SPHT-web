@@ -1,10 +1,6 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
-
-import { cn } from "@spht/utils";
-import { Icons } from "@/components/icons";
+import { Badge } from "@spht/ui/badge";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,22 +10,23 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@spht/ui/navigation-menu";
-import { Badge } from "@spht/ui/badge";
-import { ModeToggle } from "./toggle";
 
+import { cn } from "@spht/utils";
+import Link from "next/link";
+import * as React from "react";
+import { Icons } from "@/components/icons";
+import { ModeToggle } from "./toggle";
 
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Alert Dialog",
     href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    description: "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
     title: "Hover Card",
     href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
+    description: "For sighted users to preview content available behind a link.",
   },
   {
     title: "Progress",
@@ -45,8 +42,7 @@ const components: { title: string; href: string; description: string }[] = [
   {
     title: "Tabs",
     href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+    description: "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
   },
   {
     title: "Tooltip",
@@ -57,21 +53,14 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export function LoggedInNav() {
-
-  
-
-
   return (
     <div className="mr-4 md:flex">
       <Link href="/dashboard" className="lg:mr-6 sm:mr-0 flex items-center gap-2">
         <Icons.logo className="h-6 w-6 lg:block md:block" />
         <span className="font-bold lg:block md:block">QuotesAI</span>
         <Badge className="hidden lg:block md:block">Beta</Badge>
-
-        
-        
       </Link>
-    
+
       {/* <NavigationMenu className="hidden lg:block">
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -132,34 +121,29 @@ export function LoggedInNav() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu> */}
-      
     </div>
-    
   );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
+const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">>(
+  ({ className, title, children, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <a
+            ref={ref}
+            className={cn(
+              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              className,
+            )}
+            {...props}
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+          </a>
+        </NavigationMenuLink>
+      </li>
+    );
+  },
+);
 ListItem.displayName = "ListItem";

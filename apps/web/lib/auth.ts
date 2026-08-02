@@ -80,10 +80,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     authorized({ auth: session, request }) {
       const isAuthenticated = Boolean(session?.user);
       const pathname = request.nextUrl.pathname;
-      const isAuthPage =
-        pathname.startsWith("/login") || pathname.startsWith("/register");
-      const isProtectedPage =
-        pathname.startsWith("/dashboard") || pathname.startsWith("/editor");
+      const isAuthPage = pathname.startsWith("/login") || pathname.startsWith("/register");
+      const isProtectedPage = pathname.startsWith("/dashboard") || pathname.startsWith("/editor");
 
       if (isAuthPage && isAuthenticated) {
         return Response.redirect(new URL("/dashboard", request.nextUrl));

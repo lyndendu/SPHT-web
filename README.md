@@ -58,3 +58,15 @@ The existing Prisma schema and migrations are preserved under `apps/web/prisma`.
 ## License
 
 This project retains the original MIT license in [`License.md`](License.md).
+
+## Aligned engineering foundation
+
+- Node.js 24+ and pnpm 11.7.0
+- Next.js 16, React 19, and TypeScript 5.9
+- Tailwind CSS 4 with CSS-first configuration
+- Zod 4 shared contracts
+- Biome 2 for formatting, import organization, and baseline linting
+- ESLint 9 for supplementary Next.js, React, Hooks, and accessibility checks
+- React Compiler enabled
+
+The existing Auth.js, Prisma/PostgreSQL, Stripe, API routes, Magic UI, and Framer Motion capabilities remain in place.

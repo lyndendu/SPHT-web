@@ -1,5 +1,6 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+  reactCompiler: true,
   transpilePackages: ["@spht/ui", "@spht/utils", "@spht/contracts"],
   images: {
     remotePatterns: [
