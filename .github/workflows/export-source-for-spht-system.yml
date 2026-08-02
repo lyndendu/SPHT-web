@@ -1,0 +1,27 @@
+name: Export source for SPHT-system
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  export-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create source archive
+        run: tar --exclude=.git -czf spht-web-source.tar.gz .
+
+      - name: Upload source archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: spht-web-source
+          path: spht-web-source.tar.gz
+          if-no-files-found: error
+          retention-days: 1
