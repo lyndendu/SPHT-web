@@ -4,21 +4,21 @@ Web stack alignment files prepared.
 Scope: all 8 workspace projects
 ? Verifying lockfile against supply-chain policies (579 entries)...
 Progress: resolved 1, reused 0, downloaded 0, added 0
-Progress: resolved 39, reused 0, downloaded 30, added 0
+Progress: resolved 32, reused 0, downloaded 26, added 0
+Progress: resolved 41, reused 0, downloaded 37, added 0
 Progress: resolved 44, reused 0, downloaded 43, added 0
 Progress: resolved 49, reused 0, downloaded 49, added 0
 Progress: resolved 50, reused 0, downloaded 50, added 0
-Progress: resolved 51, reused 0, downloaded 50, added 0
-✓ Lockfile passes supply-chain policies (579 entries in 6.9s)
 Progress: resolved 52, reused 0, downloaded 50, added 0
-Progress: resolved 130, reused 0, downloaded 66, added 0
-Progress: resolved 212, reused 0, downloaded 183, added 0
-Progress: resolved 223, reused 0, downloaded 198, added 0
-Progress: resolved 310, reused 0, downloaded 233, added 0
-Progress: resolved 356, reused 0, downloaded 270, added 0
-Progress: resolved 411, reused 0, downloaded 353, added 0
-Progress: resolved 494, reused 0, downloaded 369, added 0
-Progress: resolved 590, reused 0, downloaded 519, added 0
+✓ Lockfile passes supply-chain policies (579 entries in 7.6s)
+Progress: resolved 52, reused 0, downloaded 52, added 0
+Progress: resolved 158, reused 0, downloaded 98, added 0
+Progress: resolved 210, reused 0, downloaded 173, added 0
+Progress: resolved 220, reused 0, downloaded 199, added 0
+Progress: resolved 278, reused 0, downloaded 204, added 0
+Progress: resolved 334, reused 0, downloaded 254, added 0
+Progress: resolved 476, reused 0, downloaded 363, added 0
+Progress: resolved 566, reused 0, downloaded 503, added 0
 Packages: +529
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Progress: resolved 592, reused 0, downloaded 530, added 529, done
@@ -32,7 +32,7 @@ Progress: resolved 592, reused 0, downloaded 530, added 529, done
 .../node_modules/@prisma/client postinstall$ node scripts/postinstall.js
 .../node_modules/@vercel/speed-insights postinstall: Done
 .../node_modules/@prisma/client postinstall: Prisma schema loaded from apps/web/prisma/schema.prisma
-.../node_modules/@prisma/client postinstall: ✔ Generated Prisma Client (v5.10.2) to ./node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 63ms
+.../node_modules/@prisma/client postinstall: ✔ Generated Prisma Client (v5.10.2) to ./node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 69ms
 .../node_modules/@prisma/client postinstall: Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 .../node_modules/@prisma/client postinstall: ```
 .../node_modules/@prisma/client postinstall: import { PrismaClient } from '@prisma/client'
@@ -55,7 +55,7 @@ Progress: resolved 592, reused 0, downloaded 530, added 529, done
 . prepare: Done
 apps/web postinstall$ prisma generate
 apps/web postinstall: Prisma schema loaded from prisma/schema.prisma
-apps/web postinstall: ✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 62ms
+apps/web postinstall: ✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 64ms
 apps/web postinstall: Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 apps/web postinstall: ```
 apps/web postinstall: import { PrismaClient } from '@prisma/client'
@@ -81,13 +81,13 @@ devDependencies:
 + turbo 2.10.8
 + typescript 5.9.3 (7.0.2 is available)
 
-Done in 20.5s using pnpm v11.7.0
+Done in 19.5s using pnpm v11.7.0
 == Generate Prisma Client ==
 $ pnpm --filter @spht/web prisma:generate
 $ prisma generate
 Prisma schema loaded from prisma/schema.prisma
 
-✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 64ms
+✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 68ms
 
 Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 ```
@@ -119,7 +119,6 @@ See other ways of importing Prisma Client: http://pris.ly/d/importing-client
 │    npm i @prisma/client@latest                          │
 └─────────────────────────────────────────────────────────┘
 == Apply safe Biome fixes ==
-$ biome check --write .
 apps/web/app/(auth)/login/page.tsx:23:5 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━━━━━━
 
   i This fragment is unnecessary.
@@ -449,6 +448,28 @@ apps/web/app/(marketing)/pricing/page.tsx:7:8 lint/correctness/noUnusedImports  
      9  8 │   
   
 
+apps/web/components/loggedin-nav.tsx:18:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    16 │ import * as React from "react";
+    17 │ import { Icons } from "@/components/icons";
+  > 18 │ import { ModeToggle } from "./toggle";
+       │        ^^^^^^^^^^^^^^
+    19 │ 
+    20 │ const components: { title: string; href: string; description: string }[] = [
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     16  16 │   import * as React from "react";
+     17  17 │   import { Icons } from "@/components/icons";
+     18     │ - import·{·ModeToggle·}·from·"./toggle";
+     19  18 │   
+     20  19 │   const components: { title: string; href: string; description: string }[] = [
+  
+
 apps/web/components/loggedin-nav.tsx:5:3 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━
 
   ! Several of these imports are unused.
@@ -482,28 +503,6 @@ apps/web/components/loggedin-nav.tsx:5:3 lint/correctness/noUnusedImports  FIXAB
      13   7 │   
   
 
-apps/web/components/loggedin-nav.tsx:18:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━
-
-  ! This import is unused.
-  
-    16 │ import * as React from "react";
-    17 │ import { Icons } from "@/components/icons";
-  > 18 │ import { ModeToggle } from "./toggle";
-       │        ^^^^^^^^^^^^^^
-    19 │ 
-    20 │ const components: { title: string; href: string; description: string }[] = [
-  
-  i Unused imports might be the result of an incomplete refactoring.
-  
-  i Unsafe fix: Remove the unused imports.
-  
-     16  16 │   import * as React from "react";
-     17  17 │   import { Icons } from "@/components/icons";
-     18     │ - import·{·ModeToggle·}·from·"./toggle";
-     19  18 │   
-     20  19 │   const components: { title: string; href: string; description: string }[] = [
-  
-
 apps/web/components/loggedin-nav.tsx:20:7 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━━━━
 
   ! This variable components is unused.
@@ -525,6 +524,29 @@ apps/web/components/loggedin-nav.tsx:20:7 lint/correctness/noUnusedVariables  FI
          20 │ + const·_components:·{·title:·string;·href:·string;·description:·string·}[]·=·[
      21  21 │     {
      22  22 │       title: "Alert Dialog",
+  
+
+apps/web/components/main-nav.tsx:19:7 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━━━━━━━━
+
+  ! This variable components is unused.
+  
+    17 │ import { Icons } from "@/components/icons";
+    18 │ 
+  > 19 │ const components: { title: string; href: string; description: string }[] = [
+       │       ^^^^^^^^^^
+    20 │   {
+    21 │     title: "Features",
+  
+  i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+  
+  i Unsafe fix: If this is intentional, prepend components with an underscore.
+  
+     17  17 │   import { Icons } from "@/components/icons";
+     18  18 │   
+     19     │ - const·components:·{·title:·string;·href:·string;·description:·string·}[]·=·[
+         19 │ + const·_components:·{·title:·string;·href:·string;·description:·string·}[]·=·[
+     20  20 │     {
+     21  21 │       title: "Features",
   
 
 apps/web/components/mobile-nav.tsx:3:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━
@@ -571,12 +593,279 @@ apps/web/components/mobile-nav.tsx:4:8 lint/correctness/noUnusedImports  FIXABLE
      6  5 │   import { cn } from "@spht/utils";
   
 
+apps/web/components/mobile-nav.tsx:5:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    3 │ import { Button } from "@spht/ui/button";
+    4 │ import { ScrollArea } from "@spht/ui/scroll-area";
+  > 5 │ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@spht/ui/sheet";
+      │        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    6 │ import { cn } from "@spht/utils";
+    7 │ import Link, { type LinkProps } from "next/link";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     3  3 │   import { Button } from "@spht/ui/button";
+     4  4 │   import { ScrollArea } from "@spht/ui/scroll-area";
+     5    │ - import·{·Sheet,·SheetContent,·SheetDescription,·SheetHeader,·SheetTitle,·SheetTrigger·}·from·"@spht/ui/sheet";
+     6  5 │   import { cn } from "@spht/utils";
+     7  6 │   import Link, { type LinkProps } from "next/link";
+  
+
+apps/web/components/mobile-nav.tsx:13:10 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! This variable open is unused.
+  
+    12 │ function MobileNav() {
+  > 13 │   const [open, setOpen] = React.useState(false);
+       │          ^^^^
+    14 │ 
+    15 │   return (
+  
+  i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+  
+  i Unsafe fix: If this is intentional, prepend open with an underscore.
+  
+    11 11 │   
+    12 12 │   function MobileNav() {
+    13    │ - ··const·[open,·setOpen]·=·React.useState(false);
+       13 │ + ··const·[_open,·setOpen]·=·React.useState(false);
+    14 14 │   
+    15 15 │     return (
+  
+
+apps/web/components/toggle.tsx:7:13 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    5 │ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@spht/ui/dropdown-menu";
+    6 │ import { useTheme } from "next-themes";
+  > 7 │ import * as React from "react";
+      │             ^^^^^
+    8 │ 
+    9 │ export function ModeToggle() {
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     5  5 │   import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@spht/ui/dropdown-menu";
+     6  6 │   import { useTheme } from "next-themes";
+     7    │ - import·*·as·React·from·"react";
+     8  7 │   
+     9  8 │   export function ModeToggle() {
+  
+
+apps/web/components/user-account-nav.tsx:10:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━
+
+  ! This import is unused.
+  
+     8 │   DropdownMenuTrigger,
+     9 │ } from "@spht/ui/dropdown-menu";
+  > 10 │ import Link from "next/link";
+       │        ^^^^
+    11 │ import type { User } from "next-auth";
+    12 │ import { signOut } from "next-auth/react";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     8  8 │     DropdownMenuTrigger,
+     9  9 │   } from "@spht/ui/dropdown-menu";
+    10    │ - import·Link·from·"next/link";
+    11 10 │   import type { User } from "next-auth";
+    12 11 │   import { signOut } from "next-auth/react";
+  
+
+apps/web/components/user-account-nav.tsx:13:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    11 │ import type { User } from "next-auth";
+    12 │ import { signOut } from "next-auth/react";
+  > 13 │ import { Icons } from "./icons";
+       │        ^^^^^^^^^
+    14 │ import { UserAvatar } from "./UserAvatar";
+    15 │ 
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    11 11 │   import type { User } from "next-auth";
+    12 12 │   import { signOut } from "next-auth/react";
+    13    │ - import·{·Icons·}·from·"./icons";
+    14 13 │   import { UserAvatar } from "./UserAvatar";
+    15 14 │   
+  
+
+apps/web/pages/api/scrapper.js:20:24 lint/correctness/noUnusedFunctionParameters  FIXABLE  ━━━━━━━━━━
+
+  ! This parameter i is unused.
+  
+    18 │   // Find the quotes
+    19 │   const quotes = [];
+  > 20 │   $("div.quote").each((i, elem) => {
+       │                        ^
+    21 │     const quote = $(elem).find("div.quoteText").text().trim();
+    22 │     // const author = $(elem).find('span.authorOrTitle').text().trim();
+  
+  i Unused parameters might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: If this is intentional, prepend i with an underscore.
+  
+    18 18 │     // Find the quotes
+    19 19 │     const quotes = [];
+    20    │ - ··$("div.quote").each((i,·elem)·=>·{
+       20 │ + ··$("div.quote").each((_i,·elem)·=>·{
+    21 21 │       const quote = $(elem).find("div.quoteText").text().trim();
+    22 22 │       // const author = $(elem).find('span.authorOrTitle').text().trim();
+  
+
+apps/web/types/index.d.ts:2:13 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    1 │ import { User } from "@prisma/client";
+  > 2 │ import type { Icon } from "lucide-react";
+      │             ^^^^^^^^
+    3 │ 
+    4 │ import { Icons } from "@/components/icons";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     1  1 │   import { User } from "@prisma/client";
+     2    │ - import·type·{·Icon·}·from·"lucide-react";
+     3  2 │   
+     4  3 │   import { Icons } from "@/components/icons";
+  
+
+apps/web/types/next-auth.d.ts:1:15 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+  > 1 │ import type { Session, User } from "next-auth";
+      │               ^^^^^^^
+    2 │ import type { JWT } from "next-auth/jwt";
+    3 │ 
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    1 │ import·type·{·Session,·User·}·from·"next-auth";
+      │               ---------                        
+
+apps/web/types/next-auth.d.ts:2:13 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    1 │ import type { Session, User } from "next-auth";
+  > 2 │ import type { JWT } from "next-auth/jwt";
+      │             ^^^^^^^
+    3 │ 
+    4 │ type UserId = string;
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     1  1 │   import type { Session, User } from "next-auth";
+     2    │ - import·type·{·JWT·}·from·"next-auth/jwt";
+     3  2 │   
+     4  3 │   type UserId = string;
+  
+
+packages/ui/src/hooks/use-toast.ts:154:28 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    152 │       id,
+    153 │       open: true,
+  > 154 │       onOpenChange: (open: any) => {
+        │                            ^^^
+    155 │         if (!open) dismiss();
+    156 │       },
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+packages/ui/src/magicui/bento-grid.tsx:22:9 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    20 │   className: string;
+    21 │   background: ReactNode;
+  > 22 │   Icon: any;
+       │         ^^^
+    23 │   description: string;
+    24 │   href: string;
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+packages/ui/src/magicui/shine-border.tsx:53:91 lint/suspicious/useIsArray  FIXABLE  ━━━━━━━━━━━━━━━━
+
+  ! Use Array.isArray() instead of instanceof Array.
+  
+    51 │             "--shine-pulse-duration": `${duration}s`,
+    52 │             "--mask-linear-gradient": `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
+  > 53 │             "--background-radial-gradient": `radial-gradient(transparent,transparent, ${!(color instanceof Array) ? color : color.join(",")},transparent,transparent)`,
+       │                                                                                           ^^^^^^^^^^^^^^^^^^^^^^
+    54 │           } as React.CSSProperties
+    55 │         }
+  
+  i instanceof Array returns false for array-like objects and arrays from other execution contexts.
+  
+  i Unsafe fix: Use Array.isArray() instead.
+  
+    51 51 │               "--shine-pulse-duration": `${duration}s`,
+    52 52 │               "--mask-linear-gradient": `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
+    53    │ - ············"--background-radial-gradient":·`radial-gradient(transparent,transparent,·${!(color·instanceof·Array)·?·color·:·color.join(",")},transparent,transparent)`,
+       53 │ + ············"--background-radial-gradient":·`radial-gradient(transparent,transparent,·${!(Array.isArray(color))·?·color·:·color.join(",")},transparent,transparent)`,
+    54 54 │             } as React.CSSProperties
+    55 55 │           }
+  
+
+packages/ui/src/hooks/use-toast.ts:170:9 lint/correctness/useExhaustiveDependencies  FIXABLE  ━━━━━━━━━━
+
+  × This hook specifies more dependencies than necessary: state.
+  
+    168 │   const [state, setState] = React.useState<State>(memoryState);
+    169 │ 
+  > 170 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    171 │     listeners.push(setState);
+    172 │     return () => {
+  
+  i This dependency can be removed from the list.
+  
+    176 │       }
+    177 │     };
+  > 178 │   }, [state]);
+        │       ^^^^^
+    179 │ 
+    180 │   return {
+  
+  i React relies on hook dependencies to determine when to re-compute Effects.
+    Specifying more dependencies than required can lead to unnecessary re-rendering
+    and degraded performance.
+  
+  i Unsafe fix: Remove the extra dependencies from the list.
+  
+    178 │ ··},·[state]);
+        │       -----   
+
 Skipped 69 suggested fixes.
 If you wish to apply the suggested (unsafe) fixes, use the command biome check --write --unsafe
 
-The number of diagnostics exceeds the limit allowed. Use --max-diagnostics to increase it.
-Diagnostics not shown: 14.
-Checked 90 files in 339ms. Fixed 67 files.
+Checked 90 files in 99ms. Fixed 67 files.
 Found 1 error.
 Found 31 warnings.
 Found 2 infos.
@@ -585,4 +874,3 @@ check ━━━━━━━━━━━━━━━━━━━━━━━━�
   × Some errors were emitted while applying fixes.
   
 
-[ELIFECYCLE] Command failed with exit code 1.
