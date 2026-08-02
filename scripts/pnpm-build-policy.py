@@ -14,13 +14,13 @@ workspace_path.write_text(
     "  - 'apps/*'\n"
     "  - 'packages/*'\n"
     "\n"
-    "onlyBuiltDependencies:\n"
-    "  - '@prisma/client'\n"
-    "  - '@prisma/engines'\n"
-    "  - '@vercel/speed-insights'\n"
-    "  - 'prisma'\n"
-    "  - 'sharp'\n",
+    "allowBuilds:\n"
+    "  '@prisma/client': true\n"
+    "  '@prisma/engines': true\n"
+    "  '@vercel/speed-insights': true\n"
+    "  'prisma': true\n"
+    "  'sharp': true\n",
     encoding="utf-8",
 )
 
-print("Trusted pnpm dependency build scripts configured in workspace settings.")
+print("Trusted pnpm dependency build scripts configured with allowBuilds.")
