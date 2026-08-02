@@ -4,23 +4,23 @@ Web stack alignment files prepared.
 Scope: all 8 workspace projects
 ? Verifying lockfile against supply-chain policies (579 entries)...
 Progress: resolved 1, reused 0, downloaded 0, added 0
-Progress: resolved 32, reused 0, downloaded 26, added 0
-Progress: resolved 41, reused 0, downloaded 37, added 0
-Progress: resolved 44, reused 0, downloaded 43, added 0
+Progress: resolved 36, reused 0, downloaded 30, added 0
+Progress: resolved 44, reused 0, downloaded 42, added 0
 Progress: resolved 49, reused 0, downloaded 49, added 0
+Progress: resolved 50, reused 0, downloaded 49, added 0
 Progress: resolved 50, reused 0, downloaded 50, added 0
 Progress: resolved 52, reused 0, downloaded 50, added 0
 ✓ Lockfile passes supply-chain policies (579 entries in 7.6s)
-Progress: resolved 52, reused 0, downloaded 52, added 0
-Progress: resolved 158, reused 0, downloaded 98, added 0
-Progress: resolved 210, reused 0, downloaded 173, added 0
-Progress: resolved 220, reused 0, downloaded 199, added 0
-Progress: resolved 278, reused 0, downloaded 204, added 0
-Progress: resolved 334, reused 0, downloaded 254, added 0
-Progress: resolved 476, reused 0, downloaded 363, added 0
-Progress: resolved 566, reused 0, downloaded 503, added 0
+Progress: resolved 53, reused 0, downloaded 52, added 0
+Progress: resolved 201, reused 0, downloaded 123, added 0
+Progress: resolved 212, reused 0, downloaded 191, added 0
+Progress: resolved 223, reused 0, downloaded 199, added 0
+Progress: resolved 309, reused 0, downloaded 229, added 0
+Progress: resolved 402, reused 0, downloaded 336, added 0
+Progress: resolved 512, reused 0, downloaded 415, added 0
 Packages: +529
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 592, reused 0, downloaded 529, added 150
 Progress: resolved 592, reused 0, downloaded 530, added 529, done
 .../node_modules/@prisma/engines postinstall$ node scripts/postinstall.js
 .../sharp@0.34.5/node_modules/sharp install$ node install/check.js || npm run build
@@ -32,7 +32,7 @@ Progress: resolved 592, reused 0, downloaded 530, added 529, done
 .../node_modules/@prisma/client postinstall$ node scripts/postinstall.js
 .../node_modules/@vercel/speed-insights postinstall: Done
 .../node_modules/@prisma/client postinstall: Prisma schema loaded from apps/web/prisma/schema.prisma
-.../node_modules/@prisma/client postinstall: ✔ Generated Prisma Client (v5.10.2) to ./node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 69ms
+.../node_modules/@prisma/client postinstall: ✔ Generated Prisma Client (v5.10.2) to ./node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 61ms
 .../node_modules/@prisma/client postinstall: Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 .../node_modules/@prisma/client postinstall: ```
 .../node_modules/@prisma/client postinstall: import { PrismaClient } from '@prisma/client'
@@ -55,7 +55,7 @@ Progress: resolved 592, reused 0, downloaded 530, added 529, done
 . prepare: Done
 apps/web postinstall$ prisma generate
 apps/web postinstall: Prisma schema loaded from prisma/schema.prisma
-apps/web postinstall: ✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 64ms
+apps/web postinstall: ✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 63ms
 apps/web postinstall: Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 apps/web postinstall: ```
 apps/web postinstall: import { PrismaClient } from '@prisma/client'
@@ -87,7 +87,7 @@ $ pnpm --filter @spht/web prisma:generate
 $ prisma generate
 Prisma schema loaded from prisma/schema.prisma
 
-✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 68ms
+✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 63ms
 
 Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 ```
@@ -108,16 +108,6 @@ See other ways of importing Prisma Client: http://pris.ly/d/importing-client
 │  https://pris.ly/cli/accelerate                             │
 └─────────────────────────────────────────────────────────────┘
 
-┌─────────────────────────────────────────────────────────┐
-│  Update available 5.10.2 -> 7.9.1                       │
-│                                                         │
-│  This is a major update - please follow the guide at    │
-│  https://pris.ly/d/major-version-upgrade                │
-│                                                         │
-│  Run the following to update                            │
-│    npm i --save-dev prisma@latest                       │
-│    npm i @prisma/client@latest                          │
-└─────────────────────────────────────────────────────────┘
 == Apply safe Biome fixes ==
 apps/web/app/(auth)/login/page.tsx:23:5 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━━━━━━
 
@@ -833,44 +823,445 @@ packages/ui/src/magicui/shine-border.tsx:53:91 lint/suspicious/useIsArray  FIXAB
     55 55 │           }
   
 
-packages/ui/src/hooks/use-toast.ts:170:9 lint/correctness/useExhaustiveDependencies  FIXABLE  ━━━━━━━━━━
-
-  × This hook specifies more dependencies than necessary: state.
-  
-    168 │   const [state, setState] = React.useState<State>(memoryState);
-    169 │ 
-  > 170 │   React.useEffect(() => {
-        │         ^^^^^^^^^
-    171 │     listeners.push(setState);
-    172 │     return () => {
-  
-  i This dependency can be removed from the list.
-  
-    176 │       }
-    177 │     };
-  > 178 │   }, [state]);
-        │       ^^^^^
-    179 │ 
-    180 │   return {
-  
-  i React relies on hook dependencies to determine when to re-compute Effects.
-    Specifying more dependencies than required can lead to unnecessary re-rendering
-    and degraded performance.
-  
-  i Unsafe fix: Remove the extra dependencies from the list.
-  
-    178 │ ··},·[state]);
-        │       -----   
-
-Skipped 69 suggested fixes.
+Skipped 67 suggested fixes.
 If you wish to apply the suggested (unsafe) fixes, use the command biome check --write --unsafe
 
-Checked 90 files in 99ms. Fixed 67 files.
-Found 1 error.
+Checked 90 files in 98ms. Fixed 67 files.
+Found 31 warnings.
+Found 2 infos.
+== Type check ==
+$ turbo typecheck
+
+   • Packages in scope: @spht/biome-config, @spht/contracts, @spht/eslint-config, @spht/typescript-config, @spht/ui, @spht/utils, @spht/web
+   • Running typecheck in 7 packages
+   • Remote caching disabled
+
+::group::@spht/utils:typecheck
+cache miss, executing 3e2c9049dfb8f7a1
+$ tsc --noEmit
+::endgroup::
+::group::@spht/contracts:typecheck
+cache miss, executing 95ce7c89b820055b
+$ tsc --noEmit
+::endgroup::
+::group::@spht/ui:typecheck
+cache miss, executing fd2dc9e87fc97ecd
+$ tsc --noEmit
+::endgroup::
+::group::@spht/web:typecheck
+cache miss, executing d9ac9f661221a588
+$ tsc --noEmit
+::endgroup::
+
+ Tasks:    4 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    8.301s 
+
+== Biome check ==
+$ biome check .
+apps/web/app/(auth)/login/page.tsx:23:5 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━━━━━━
+
+  i This fragment is unnecessary.
+  
+    22 │   return (
+  > 23 │     <>
+       │     ^^
+  > 24 │       <div className="container flex h-screen w-screen flex-col items-center justify-center">
+        ...
+  > 49 │       </div>
+  > 50 │     </>
+       │     ^^^
+    51 │   );
+    52 │ }
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    21 21 │   
+    22 22 │     return (
+    23    │ - ····<>
+    24    │ - ······<div·className="container·flex·h-screen·w-screen·flex-col·items-center·justify-center">
+       23 │ + ····<div·className="container·flex·h-screen·w-screen·flex-col·items-center·justify-center">
+    25 24 │           <Link
+    26 25 │             href="/#"
+    ····· │ 
+    47 46 │             </p>
+    48 47 │           </div>
+    49    │ - ······</div>
+    50    │ - ····</>
+       48 │ + ······</div>
+    51 49 │     );
+    52 50 │   }
+  
+
+apps/web/app/(auth)/login/page.tsx:29:11 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━━━━━
+
+  i This fragment is unnecessary.
+  
+    27 │           className={cn(buttonVariants({ variant: "ghost" }), "absolute left-4 top-4 md:left-8 md:top-8")}
+    28 │         >
+  > 29 │           <>
+       │           ^^
+  > 30 │             <Icons.chevronLeft className="mr-2 h-4 w-4" />
+  > 31 │             Back
+  > 32 │           </>
+       │           ^^^
+    33 │         </Link>
+    34 │         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    27 27 │             className={cn(buttonVariants({ variant: "ghost" }), "absolute left-4 top-4 md:left-8 md:top-8")}
+    28 28 │           >
+    29    │ - ··········<>
+       29 │ + ··········
+    30 30 │               <Icons.chevronLeft className="mr-2 h-4 w-4" />
+    31 31 │               Back
+    32    │ - ··········</>
+       32 │ + ··········
+    33 33 │           </Link>
+    34 34 │           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+  
+
+apps/web/app/(auth)/layout.tsx:1:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+  > 1 │ import { ThemeProvider } from "@/components/theme-provider";
+      │        ^^^^^^^^^^^^^^^^^
+    2 │ 
+    3 │ interface AuthLayoutProps {
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    1 │ import·{·ThemeProvider·}·from·"@/components/theme-provider";
+      │ ------------------------------------------------------------
+
+apps/web/app/(dashboard)/dashboard/page.tsx:92:16 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    91 │ import { Button } from "@spht/ui/button";
+  > 92 │ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@spht/ui/card";
+       │                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    93 │ import { Input } from "@spht/ui/input";
+    94 │ import { Label } from "@spht/ui/label";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    92 │ import·{·Card,·CardContent,·CardDescription,·CardFooter,·CardHeader,·CardTitle·}·from·"@spht/ui/card";
+       │                -------------                 ------------                                             
+
+apps/web/app/(dashboard)/dashboard/page.tsx:97:10 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    95 │ import { cn } from "@spht/utils";
+    96 │ import axios from "axios";
+  > 97 │ import { useEffect, useState } from "react";
+       │          ^^^^^^^^^
+    98 │ 
+    99 │ function DashboardPage() {
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    97 │ import·{·useEffect,·useState·}·from·"react";
+       │          -----------                        
+
+apps/web/app/(dashboard)/dashboard/page.tsx:100:10 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━
+
+  ! This variable hasPaid is unused.
+  
+     99 │ function DashboardPage() {
+  > 100 │   const [hasPaid, setHasPaid] = useState(false);
+        │          ^^^^^^^
+    101 │   const [tag, setTag] = useState("");
+    102 │   const [quotes, setQuotes] = useState([]);
+  
+  i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+  
+  i Unsafe fix: If this is intentional, prepend hasPaid with an underscore.
+  
+     98  98 │   
+     99  99 │   function DashboardPage() {
+    100     │ - ··const·[hasPaid,·setHasPaid]·=·useState(false);
+        100 │ + ··const·[_hasPaid,·setHasPaid]·=·useState(false);
+    101 101 │     const [tag, setTag] = useState("");
+    102 102 │     const [quotes, setQuotes] = useState([]);
+  
+
+apps/web/app/(dashboard)/dashboard/page.tsx:100:19 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━
+
+  ! This variable setHasPaid is unused.
+  
+     99 │ function DashboardPage() {
+  > 100 │   const [hasPaid, setHasPaid] = useState(false);
+        │                   ^^^^^^^^^^
+    101 │   const [tag, setTag] = useState("");
+    102 │   const [quotes, setQuotes] = useState([]);
+  
+  i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+  
+  i Unsafe fix: If this is intentional, prepend setHasPaid with an underscore.
+  
+     98  98 │   
+     99  99 │   function DashboardPage() {
+    100     │ - ··const·[hasPaid,·setHasPaid]·=·useState(false);
+        100 │ + ··const·[hasPaid,·_setHasPaid]·=·useState(false);
+    101 101 │     const [tag, setTag] = useState("");
+    102 102 │     const [quotes, setQuotes] = useState([]);
+  
+
+apps/web/app/(dashboard)/dashboard/page.tsx:106:9 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━
+
+  ! This variable handleCheckout is unused.
+  
+    105 │   // useEffect(() => {
+  > 106 │   const handleCheckout = async () => {
+        │         ^^^^^^^^^^^^^^
+    107 │     // Call your API endpoint to create a checkout session
+    108 │     const res = await fetch("/api/checkout", {
+  
+  i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+  
+  i Unsafe fix: If this is intentional, prepend handleCheckout with an underscore.
+  
+    104 104 │   
+    105 105 │     // useEffect(() => {
+    106     │ - ··const·handleCheckout·=·async·()·=>·{
+        106 │ + ··const·_handleCheckout·=·async·()·=>·{
+    107 107 │       // Call your API endpoint to create a checkout session
+    108 108 │       const res = await fetch("/api/checkout", {
+  
+
+apps/web/app/(marketing)/hero/page.tsx:2:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    1 │ import { buttonVariants } from "@spht/ui/button";
+  > 2 │ import BlurIn from "@spht/ui/magicui/blur-in";
+      │        ^^^^^^
+    3 │ import { BorderBeam } from "@spht/ui/magicui/border-beam";
+    4 │ import ShineBorder from "@spht/ui/magicui/shine-border";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     1  1 │   import { buttonVariants } from "@spht/ui/button";
+     2    │ - import·BlurIn·from·"@spht/ui/magicui/blur-in";
+     3  2 │   import { BorderBeam } from "@spht/ui/magicui/border-beam";
+     4  3 │   import ShineBorder from "@spht/ui/magicui/shine-border";
+  
+
+apps/web/app/(marketing)/page.tsx:1:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+  > 1 │ import { Button } from "@spht/ui/button";
+      │        ^^^^^^^^^^
+    2 │ import { MainNav } from "@/components/main-nav";
+    3 │ import { ModeToggle } from "@/components/toggle";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    1 │ import·{·Button·}·from·"@spht/ui/button";
+      │ -----------------------------------------
+
+apps/web/app/(marketing)/page.tsx:2:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    1 │ import { Button } from "@spht/ui/button";
+  > 2 │ import { MainNav } from "@/components/main-nav";
+      │        ^^^^^^^^^^^
+    3 │ import { ModeToggle } from "@/components/toggle";
+    4 │ import HeroPage from "./hero/page";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    1 1 │   import { Button } from "@spht/ui/button";
+    2   │ - import·{·MainNav·}·from·"@/components/main-nav";
+    3 2 │   import { ModeToggle } from "@/components/toggle";
+    4 3 │   import HeroPage from "./hero/page";
+  
+
+apps/web/app/(marketing)/page.tsx:3:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    1 │ import { Button } from "@spht/ui/button";
+    2 │ import { MainNav } from "@/components/main-nav";
+  > 3 │ import { ModeToggle } from "@/components/toggle";
+      │        ^^^^^^^^^^^^^^
+    4 │ import HeroPage from "./hero/page";
+    5 │ 
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    1 1 │   import { Button } from "@spht/ui/button";
+    2 2 │   import { MainNav } from "@/components/main-nav";
+    3   │ - import·{·ModeToggle·}·from·"@/components/toggle";
+    4 3 │   import HeroPage from "./hero/page";
+    5 4 │   
+  
+
+.turbo/cache/3e2c9049dfb8f7a1-manifest.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    1    │ - {"files":{"packages/utils/.turbo/turbo-typecheck.log":{"size":15,"mtime_nanos":1785669199525479577,"mode":420,"is_dir":false}},"order":["packages/utils/.turbo/turbo-typecheck.log"]}
+       1 │ + {
+       2 │ + ··"files":·{
+       3 │ + ····"packages/utils/.turbo/turbo-typecheck.log":·{
+       4 │ + ······"size":·15,
+       5 │ + ······"mtime_nanos":·1785669199525479577,
+       6 │ + ······"mode":·420,
+       7 │ + ······"is_dir":·false
+       8 │ + ····}
+       9 │ + ··},
+      10 │ + ··"order":·["packages/utils/.turbo/turbo-typecheck.log"]
+      11 │ + }
+      12 │ + 
+  
+
+.turbo/cache/3e2c9049dfb8f7a1-meta.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    1   │ - {"hash":"3e2c9049dfb8f7a1","duration":1635,"sha":"297033463fe2c4853b7008373eabb26e6c20084b","dirty_hash":"77f1b7d83530f25de31eedec7b3f3adaee5fd2165e18e5b14a9edcc449fa80f1"}
+      1 │ + {
+      2 │ + ··"hash":·"3e2c9049dfb8f7a1",
+      3 │ + ··"duration":·1635,
+      4 │ + ··"sha":·"297033463fe2c4853b7008373eabb26e6c20084b",
+      5 │ + ··"dirty_hash":·"77f1b7d83530f25de31eedec7b3f3adaee5fd2165e18e5b14a9edcc449fa80f1"
+      6 │ + }
+      7 │ + 
+  
+
+.turbo/cache/95ce7c89b820055b-manifest.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    1    │ - {"files":{"packages/contracts/.turbo/turbo-typecheck.log":{"size":15,"mtime_nanos":1785669199659479039,"mode":420,"is_dir":false}},"order":["packages/contracts/.turbo/turbo-typecheck.log"]}
+       1 │ + {
+       2 │ + ··"files":·{
+       3 │ + ····"packages/contracts/.turbo/turbo-typecheck.log":·{
+       4 │ + ······"size":·15,
+       5 │ + ······"mtime_nanos":·1785669199659479039,
+       6 │ + ······"mode":·420,
+       7 │ + ······"is_dir":·false
+       8 │ + ····}
+       9 │ + ··},
+      10 │ + ··"order":·["packages/contracts/.turbo/turbo-typecheck.log"]
+      11 │ + }
+      12 │ + 
+  
+
+.turbo/cache/95ce7c89b820055b-meta.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    1   │ - {"hash":"95ce7c89b820055b","duration":1769,"sha":"297033463fe2c4853b7008373eabb26e6c20084b","dirty_hash":"77f1b7d83530f25de31eedec7b3f3adaee5fd2165e18e5b14a9edcc449fa80f1"}
+      1 │ + {
+      2 │ + ··"hash":·"95ce7c89b820055b",
+      3 │ + ··"duration":·1769,
+      4 │ + ··"sha":·"297033463fe2c4853b7008373eabb26e6c20084b",
+      5 │ + ··"dirty_hash":·"77f1b7d83530f25de31eedec7b3f3adaee5fd2165e18e5b14a9edcc449fa80f1"
+      6 │ + }
+      7 │ + 
+  
+
+.turbo/cache/d9ac9f661221a588-manifest.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    1    │ - {"files":{"apps/web/.turbo/turbo-typecheck.log":{"size":15,"mtime_nanos":1785669206177452661,"mode":420,"is_dir":false}},"order":["apps/web/.turbo/turbo-typecheck.log"]}
+       1 │ + {
+       2 │ + ··"files":·{
+       3 │ + ····"apps/web/.turbo/turbo-typecheck.log":·{
+       4 │ + ······"size":·15,
+       5 │ + ······"mtime_nanos":·1785669206177452661,
+       6 │ + ······"mode":·420,
+       7 │ + ······"is_dir":·false
+       8 │ + ····}
+       9 │ + ··},
+      10 │ + ··"order":·["apps/web/.turbo/turbo-typecheck.log"]
+      11 │ + }
+      12 │ + 
+  
+
+.turbo/cache/d9ac9f661221a588-meta.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    1   │ - {"hash":"d9ac9f661221a588","duration":4056,"sha":"297033463fe2c4853b7008373eabb26e6c20084b","dirty_hash":"77f1b7d83530f25de31eedec7b3f3adaee5fd2165e18e5b14a9edcc449fa80f1"}
+      1 │ + {
+      2 │ + ··"hash":·"d9ac9f661221a588",
+      3 │ + ··"duration":·4056,
+      4 │ + ··"sha":·"297033463fe2c4853b7008373eabb26e6c20084b",
+      5 │ + ··"dirty_hash":·"77f1b7d83530f25de31eedec7b3f3adaee5fd2165e18e5b14a9edcc449fa80f1"
+      6 │ + }
+      7 │ + 
+  
+
+.turbo/cache/fd2dc9e87fc97ecd-manifest.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    1    │ - {"files":{"packages/ui/.turbo/turbo-typecheck.log":{"size":15,"mtime_nanos":1785669202120469148,"mode":420,"is_dir":false}},"order":["packages/ui/.turbo/turbo-typecheck.log"]}
+       1 │ + {
+       2 │ + ··"files":·{
+       3 │ + ····"packages/ui/.turbo/turbo-typecheck.log":·{
+       4 │ + ······"size":·15,
+       5 │ + ······"mtime_nanos":·1785669202120469148,
+       6 │ + ······"mode":·420,
+       7 │ + ······"is_dir":·false
+       8 │ + ····}
+       9 │ + ··},
+      10 │ + ··"order":·["packages/ui/.turbo/turbo-typecheck.log"]
+      11 │ + }
+      12 │ + 
+  
+
+.turbo/cache/fd2dc9e87fc97ecd-meta.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    1   │ - {"hash":"fd2dc9e87fc97ecd","duration":2593,"sha":"297033463fe2c4853b7008373eabb26e6c20084b","dirty_hash":"77f1b7d83530f25de31eedec7b3f3adaee5fd2165e18e5b14a9edcc449fa80f1"}
+      1 │ + {
+      2 │ + ··"hash":·"fd2dc9e87fc97ecd",
+      3 │ + ··"duration":·2593,
+      4 │ + ··"sha":·"297033463fe2c4853b7008373eabb26e6c20084b",
+      5 │ + ··"dirty_hash":·"77f1b7d83530f25de31eedec7b3f3adaee5fd2165e18e5b14a9edcc449fa80f1"
+      6 │ + }
+      7 │ + 
+  
+
+The number of diagnostics exceeds the limit allowed. Use --max-diagnostics to increase it.
+Diagnostics not shown: 21.
+Checked 98 files in 51ms. No fixes applied.
+Found 8 errors.
 Found 31 warnings.
 Found 2 infos.
 check ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  × Some errors were emitted while applying fixes.
+  × Some errors were emitted while running checks.
   
 
+[ELIFECYCLE] Command failed with exit code 1.
