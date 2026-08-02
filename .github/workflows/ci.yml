@@ -133,6 +133,10 @@ jobs:
               '  css: { parser: { tailwindDirectives: true } },\n  files: {\n    ignoreUnknown: true,',
           )
           text = text.replace(
+              'includes: ["**", "!**/.next", "!**/node_modules", "!docs/legacy/**"],',
+              'includes: ["**", "!**/.next/**", "!**/.turbo/**", "!**/node_modules/**", "!docs/legacy/**"],',
+          )
+          text = text.replace(
               'rules: { recommended: true },',
               'rules: { recommended: true, a11y: { noSvgWithoutTitle: "off" } },',
           )
@@ -153,11 +157,15 @@ jobs:
             python -c "from pathlib import Path; p=Path('apps/web/app/(dashboard)/dashboard/page.tsx'); t=p.read_text(); t=t.replace('quotes.map((quote, index) => (', 'quotes.map((quote) => (').replace('key={index}', 'key={String(quote)}'); p.write_text(t)"
           fi
 
+          if [ "$status" -eq 0 ]; then
+            python -c "from pathlib import Path; p=Path('packages/ui/src/hooks/use-toast.ts'); t=p.read_text().replace('  }, [state])', '  }, [])'); p.write_text(t)"
+          fi
+
           if [ "$status" -eq 0 ]; then run_step "Resolve upgraded workspace" pnpm install --no-frozen-lockfile || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Generate Prisma Client" pnpm prisma:generate || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Apply safe Biome fixes" pnpm exec biome check --write --max-diagnostics=200 . || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Type check" pnpm typecheck || status=$?; fi
-          if [ "$status" -eq 0 ]; then run_step "Biome check" pnpm check || status=$?; fi
+          if [ "$status" -eq 0 ]; then run_step "Biome check" pnpm exec biome check --max-diagnostics=200 . || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Supplementary ESLint" pnpm lint || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Production build" pnpm build || status=$?; fi
 
