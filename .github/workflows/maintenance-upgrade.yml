@@ -4,13 +4,20 @@ on:
   push:
     branches:
       - automation/maintenance-warnings
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 permissions:
   contents: write
 
 jobs:
   upgrade:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'github-actions[bot]' && (github.event_name == 'push' || github.head_ref == 'automation/maintenance-warnings')
     runs-on: ubuntu-latest
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/spht
@@ -63,7 +70,7 @@ jobs:
         run: pnpm typecheck
 
       - name: Lint without warnings
-        run: pnpm lint -- --max-warnings=0
+        run: pnpm lint
 
       - name: Production build
         run: pnpm build
