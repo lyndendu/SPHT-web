@@ -4,20 +4,21 @@ Web stack alignment files prepared.
 Scope: all 8 workspace projects
 ? Verifying lockfile against supply-chain policies (579 entries)...
 Progress: resolved 1, reused 0, downloaded 0, added 0
-Progress: resolved 36, reused 0, downloaded 32, added 0
-Progress: resolved 44, reused 0, downloaded 42, added 0
+Progress: resolved 39, reused 0, downloaded 30, added 0
+Progress: resolved 44, reused 0, downloaded 43, added 0
 Progress: resolved 49, reused 0, downloaded 49, added 0
-Progress: resolved 50, reused 0, downloaded 49, added 0
 Progress: resolved 50, reused 0, downloaded 50, added 0
+Progress: resolved 51, reused 0, downloaded 50, added 0
+✓ Lockfile passes supply-chain policies (579 entries in 6.9s)
 Progress: resolved 52, reused 0, downloaded 50, added 0
-✓ Lockfile passes supply-chain policies (579 entries in 7.3s)
-Progress: resolved 56, reused 0, downloaded 52, added 0
-Progress: resolved 209, reused 0, downloaded 145, added 0
-Progress: resolved 218, reused 0, downloaded 198, added 0
-Progress: resolved 277, reused 0, downloaded 202, added 0
-Progress: resolved 336, reused 0, downloaded 230, added 0
-Progress: resolved 415, reused 0, downloaded 344, added 0
-Progress: resolved 534, reused 0, downloaded 470, added 0
+Progress: resolved 130, reused 0, downloaded 66, added 0
+Progress: resolved 212, reused 0, downloaded 183, added 0
+Progress: resolved 223, reused 0, downloaded 198, added 0
+Progress: resolved 310, reused 0, downloaded 233, added 0
+Progress: resolved 356, reused 0, downloaded 270, added 0
+Progress: resolved 411, reused 0, downloaded 353, added 0
+Progress: resolved 494, reused 0, downloaded 369, added 0
+Progress: resolved 590, reused 0, downloaded 519, added 0
 Packages: +529
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Progress: resolved 592, reused 0, downloaded 530, added 529, done
@@ -31,7 +32,7 @@ Progress: resolved 592, reused 0, downloaded 530, added 529, done
 .../node_modules/@prisma/client postinstall$ node scripts/postinstall.js
 .../node_modules/@vercel/speed-insights postinstall: Done
 .../node_modules/@prisma/client postinstall: Prisma schema loaded from apps/web/prisma/schema.prisma
-.../node_modules/@prisma/client postinstall: ✔ Generated Prisma Client (v5.10.2) to ./node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 62ms
+.../node_modules/@prisma/client postinstall: ✔ Generated Prisma Client (v5.10.2) to ./node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 63ms
 .../node_modules/@prisma/client postinstall: Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 .../node_modules/@prisma/client postinstall: ```
 .../node_modules/@prisma/client postinstall: import { PrismaClient } from '@prisma/client'
@@ -54,7 +55,7 @@ Progress: resolved 592, reused 0, downloaded 530, added 529, done
 . prepare: Done
 apps/web postinstall$ prisma generate
 apps/web postinstall: Prisma schema loaded from prisma/schema.prisma
-apps/web postinstall: ✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 64ms
+apps/web postinstall: ✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 62ms
 apps/web postinstall: Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 apps/web postinstall: ```
 apps/web postinstall: import { PrismaClient } from '@prisma/client'
@@ -80,13 +81,13 @@ devDependencies:
 + turbo 2.10.8
 + typescript 5.9.3 (7.0.2 is available)
 
-Done in 18.9s using pnpm v11.7.0
+Done in 20.5s using pnpm v11.7.0
 == Generate Prisma Client ==
 $ pnpm --filter @spht/web prisma:generate
 $ prisma generate
 Prisma schema loaded from prisma/schema.prisma
 
-✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 65ms
+✔ Generated Prisma Client (v5.10.2) to ./../../node_modules/.pnpm/@prisma+client@5.10.2_prisma@5.10.2/node_modules/@prisma/client in 64ms
 
 Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
 ```
@@ -448,83 +449,135 @@ apps/web/app/(marketing)/pricing/page.tsx:7:8 lint/correctness/noUnusedImports  
      9  8 │   
   
 
-apps/web/components/icons.tsx:5:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+apps/web/components/loggedin-nav.tsx:5:3 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━
 
-  × Alternative text title element cannot be empty
+  ! Several of these imports are unused.
   
-    3 │ export const Icons = {
-    4 │   logo: (props: IconProps) => (
-  > 5 │     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
-      │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    6 │       <rect width="256" height="256" fill="none" />
-    7 │       <line
+     3 │ import { Badge } from "@spht/ui/badge";
+     4 │ import {
+   > 5 │   NavigationMenu,
+       │   ^^^^^^^^^^^^^^^
+   > 6 │   NavigationMenuContent,
+        ...
+  > 10 │   NavigationMenuTrigger,
+  > 11 │   navigationMenuTriggerStyle,
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │ } from "@spht/ui/navigation-menu";
+    13 │ 
   
-  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
+  i Unused imports might be the result of an incomplete refactoring.
   
-
-apps/web/components/icons.tsx:32:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  × Alternative text title element cannot be empty
+  i Unsafe fix: Remove the unused imports.
   
-    30 │   ),
-    31 │   twitter: (props: IconProps) => (
-  > 32 │     <svg {...props} height="23" viewBox="0 0 1200 1227" width="23" xmlns="http://www.w3.org/2000/svg">
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    33 │       <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
-    34 │     </svg>
-  
-  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
-
-apps/web/components/icons.tsx:37:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  × Alternative text title element cannot be empty
-  
-    35 │   ),
-    36 │   gitHub: (props: IconProps) => (
-  > 37 │     <svg viewBox="0 0 438.549 438.549" {...props}>
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    38 │       <path
-    39 │         fill="currentColor"
-  
-  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
+      3   3 │   import { Badge } from "@spht/ui/badge";
+      4   4 │   import {
+      5     │ - ··NavigationMenu,
+      6     │ - ··NavigationMenuContent,
+      7     │ - ··NavigationMenuItem,
+      8   5 │     NavigationMenuLink,
+      9     │ - ··NavigationMenuList,
+     10     │ - ··NavigationMenuTrigger,
+     11     │ - ··navigationMenuTriggerStyle,
+     12   6 │   } from "@spht/ui/navigation-menu";
+     13   7 │   
   
 
-apps/web/components/icons.tsx:45:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+apps/web/components/loggedin-nav.tsx:18:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━
 
-  × Alternative text title element cannot be empty
+  ! This import is unused.
   
-    43 │   ),
-    44 │   radix: (props: IconProps) => (
-  > 45 │     <svg viewBox="0 0 25 25" fill="none" {...props}>
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    46 │       <path d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z" fill="currentcolor"></path>
-    47 │       <path d="M12 0H4V8H12V0Z" fill="currentcolor"></path>
+    16 │ import * as React from "react";
+    17 │ import { Icons } from "@/components/icons";
+  > 18 │ import { ModeToggle } from "./toggle";
+       │        ^^^^^^^^^^^^^^
+    19 │ 
+    20 │ const components: { title: string; href: string; description: string }[] = [
   
-  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     16  16 │   import * as React from "react";
+     17  17 │   import { Icons } from "@/components/icons";
+     18     │ - import·{·ModeToggle·}·from·"./toggle";
+     19  18 │   
+     20  19 │   const components: { title: string; href: string; description: string }[] = [
   
 
-apps/web/components/icons.tsx:55:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+apps/web/components/loggedin-nav.tsx:20:7 lint/correctness/noUnusedVariables  FIXABLE  ━━━━━━━━━━━━━
 
-  × Alternative text title element cannot be empty
+  ! This variable components is unused.
   
-    53 │   ),
-    54 │   aria: (props: IconProps) => (
-  > 55 │     <svg role="img" viewBox="0 0 24 24" fill="currentColor" {...props}>
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    56 │       <path d="M13.966 22.624l-1.69-4.281H8.122l3.892-9.144 5.662 13.425zM8.884 1.376H0v21.248zm15.116 0h-8.884L24 22.624Z" />
-    57 │     </svg>
+    18 │ import { ModeToggle } from "./toggle";
+    19 │ 
+  > 20 │ const components: { title: string; href: string; description: string }[] = [
+       │       ^^^^^^^^^^
+    21 │   {
+    22 │     title: "Alert Dialog",
   
-  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
+  i Unused variables are often the result of typos, incomplete refactors, or other sources of bugs.
+  
+  i Unsafe fix: If this is intentional, prepend components with an underscore.
+  
+     18  18 │   import { ModeToggle } from "./toggle";
+     19  19 │   
+     20     │ - const·components:·{·title:·string;·href:·string;·description:·string·}[]·=·[
+         20 │ + const·_components:·{·title:·string;·href:·string;·description:·string·}[]·=·[
+     21  21 │     {
+     22  22 │       title: "Alert Dialog",
+  
+
+apps/web/components/mobile-nav.tsx:3:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    1 │ "use client";
+    2 │ 
+  > 3 │ import { Button } from "@spht/ui/button";
+      │        ^^^^^^^^^^
+    4 │ import { ScrollArea } from "@spht/ui/scroll-area";
+    5 │ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@spht/ui/sheet";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     1  1 │   "use client";
+     2    │ - 
+     3    │ - import·{·Button·}·from·"@spht/ui/button";
+        2 │ + 
+     4  3 │   import { ScrollArea } from "@spht/ui/scroll-area";
+     5  4 │   import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@spht/ui/sheet";
+  
+
+apps/web/components/mobile-nav.tsx:4:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    3 │ import { Button } from "@spht/ui/button";
+  > 4 │ import { ScrollArea } from "@spht/ui/scroll-area";
+      │        ^^^^^^^^^^^^^^
+    5 │ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@spht/ui/sheet";
+    6 │ import { cn } from "@spht/utils";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+     2  2 │   
+     3  3 │   import { Button } from "@spht/ui/button";
+     4    │ - import·{·ScrollArea·}·from·"@spht/ui/scroll-area";
+     5  4 │   import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@spht/ui/sheet";
+     6  5 │   import { cn } from "@spht/utils";
   
 
 Skipped 69 suggested fixes.
 If you wish to apply the suggested (unsafe) fixes, use the command biome check --write --unsafe
 
 The number of diagnostics exceeds the limit allowed. Use --max-diagnostics to increase it.
-Diagnostics not shown: 30.
-Checked 90 files in 98ms. Fixed 67 files.
-Found 17 errors.
+Diagnostics not shown: 14.
+Checked 90 files in 339ms. Fixed 67 files.
+Found 1 error.
 Found 31 warnings.
 Found 2 infos.
 check ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
