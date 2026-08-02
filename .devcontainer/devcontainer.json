@@ -1,6 +1,8 @@
 {
   "name": "SPHT Platform",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-24-bookworm",
   "postCreateCommand": "corepack enable && pnpm install",
-  "forwardPorts": [3000]
+  "forwardPorts": [
+    3000
+  ]
 }

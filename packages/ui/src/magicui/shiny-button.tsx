@@ -1,5 +1,6 @@
 "use client";
-import { type AnimationProps, motion } from "framer-motion";
+
+import { motion, type MotionProps } from "framer-motion";
 
 const animationProps = {
   initial: { "--x": "100%", scale: 0.8 },
@@ -20,7 +21,7 @@ const animationProps = {
       mass: 0.5,
     },
   },
-} as AnimationProps;
+} satisfies MotionProps;
 
 const ShinyButton = ({ text = "shiny-button" }) => {
   return (
@@ -29,7 +30,7 @@ const ShinyButton = ({ text = "shiny-button" }) => {
       className="relative rounded-lg px-8 py-3.5 font-medium backdrop-blur-xl transition-[box-shadow] duration-300 ease-in-out hover:shadow dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/10%)_0%,transparent_60%)] dark:hover:shadow-[0_0_20px_hsl(var(--primary)/10%)]"
     >
       <span
-        className="font-bold relative block h-full w-full text-sm uppercase tracking-wide text-[rgb(0,0,0,65%)] dark:font-bold dark:text-[rgb(255,255,255,90%)]"
+        className="relative block h-full w-full text-sm font-bold uppercase tracking-wide text-[rgb(0,0,0,65%)] dark:font-bold dark:text-[rgb(255,255,255,90%)]"
         style={{
           maskImage:
             "linear-gradient(-75deg,hsl(var(--primary)) calc(var(--x) + 20%),transparent calc(var(--x) + 30%),hsl(var(--primary)) calc(var(--x) + 100%))",
@@ -43,7 +44,7 @@ const ShinyButton = ({ text = "shiny-button" }) => {
           maskComposite: "exclude",
         }}
         className="absolute inset-0 z-10 block rounded-[inherit] bg-[linear-gradient(-75deg,hsl(var(--primary)/10%)_calc(var(--x)+20%),hsl(var(--primary)/50%)_calc(var(--x)+25%),hsl(var(--primary)/10%)_calc(var(--x)+100%))] p-px"
-      ></span>
+      />
     </motion.button>
   );
 };
