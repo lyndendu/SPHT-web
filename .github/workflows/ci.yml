@@ -155,7 +155,7 @@ jobs:
 
           if [ "$status" -eq 0 ]; then run_step "Resolve upgraded workspace" pnpm install --no-frozen-lockfile || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Generate Prisma Client" pnpm prisma:generate || status=$?; fi
-          if [ "$status" -eq 0 ]; then run_step "Apply safe Biome fixes" pnpm check:fix || status=$?; fi
+          if [ "$status" -eq 0 ]; then run_step "Apply safe Biome fixes" pnpm exec biome check --write --max-diagnostics=200 . || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Type check" pnpm typecheck || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Biome check" pnpm check || status=$?; fi
           if [ "$status" -eq 0 ]; then run_step "Supplementary ESLint" pnpm lint || status=$?; fi
